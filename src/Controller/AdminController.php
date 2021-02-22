@@ -24,8 +24,8 @@ use App\Form\OeuvreType;
 
 
 /**
-     * @Route("/admin")
-     */
+ * @Route("/admin")
+ */
 
 class AdminController extends AbstractController
 {
@@ -150,5 +150,25 @@ class AdminController extends AbstractController
         $manager->remove($categorie);
         $manager->flush();
         return $this->redirectToRoute('categories');
+    }
+
+    /**
+     * @Route("/oeuvres/suppression/{id}", name="oeuvres_suppression")
+     */
+    public function SuppressionOeuvres(Oeuvre $oeuvre, EntityManagerInterface $manager)
+    {
+        $manager->remove($oeuvre);
+        $manager->flush();
+        return $this->redirectToRoute('oeuvres');
+    }
+
+    /**
+     * @Route("/couleurs/suppression/{id}", name="couleurs_suppression")
+     */
+    public function SuppressionCouleurs(Couleur $couleur, EntityManagerInterface $manager)
+    {
+        $manager->remove($couleur);
+        $manager->flush();
+        return $this->redirectToRoute('couleurs');
     }
 }
