@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Acceuil {% endblock %}
+
+{% block body %}
+<div class="brand">
+	<img src="{{asset('asset/img/5_1.jpg')}}">
+	<div class="text">
+		<h1 class="title">Maya THINON</h1>
+		<a href="{{path('collection',{id:randomCollection.id})}}" class="random"><i class="fas fa-random"></i>Voir une collection</a>
+	</div>
+</div>
+<div class="container-lg">
+	<!-- Lettre -->
+	<img src="{{asset('asset/img/lettre.jpg')}}" alt="" class="lettre">
+</div>
+
+{% endblock %}

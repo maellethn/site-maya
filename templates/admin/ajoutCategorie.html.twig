@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Catégorie{% endblock %}
+
+{% block body %}
+  {% include 'admin/adminNav.html.twig' %}
+  <div class="container-lg">
+    <div class="card shadow mb-4 form-xs">
+      <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary text-center">Ajouter une catégorie</h6>
+      </div>
+      <div class="card-body">
+        {{ form_start(form)}}
+        {{ form_row(form.Titre,{'label':'Titre'})}}
+        {{ form_row(form.Couleur,{'label':'Couleur'})}}
+         <button class="btn btn-primary" type="submit">Ajouter</button>
+        {{form_end(form)}}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
