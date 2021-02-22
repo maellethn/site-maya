@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use WebPConvert\WebPConvert;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -109,8 +111,15 @@ class AdminController extends AbstractController
     		$file=$form->get('File')->getData();
     		$name=md5(uniqid()).'.'.$file->guessExtension();
     		$file->move($path,$name);
+            
+            //webPconvert
+            $source = 'images/'.$name;
+            $destination = $source . '.webp';
+            $options = [];
+            WebPConvert::convert($source, $destination, $options);
 
-    		$oeuvre->setLien('images/'.$name);
+            $oeuvre->setLien($destination);
+
     		$manager->persist($oeuvre);
     		$manager->flush();
     		return $this->redirectToRoute('oeuvres');
