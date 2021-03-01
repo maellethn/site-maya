@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
 
 {% block title %}Nouvelle Couleur{% endblock %}
 
@@ -19,3 +20,4 @@
     </div>
   </div>
 {% endblock %}
+{% block javascripts %}{% include 'admin/adminJavascript.html.twig' %}{% endblock %}

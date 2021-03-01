@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
 {% block title %}Catégories{% endblock %}
 
 {% block body %}
@@ -47,11 +47,7 @@
 
 {% endblock %}
 {% block javascripts %}
- 
-  <script src="{{asset('asset/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-  
+{% include 'admin/adminJavascript.html.twig' %} 
   <script>
 $(document).ready(function() {
     $('#example').DataTable();

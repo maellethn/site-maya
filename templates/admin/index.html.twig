@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
@@ -9,3 +9,4 @@
     <h1>Coucou mouyon</h1>
 </div>
 {% endblock %}
+{% block javascripts %}{% include 'admin/adminJavascript.html.twig' %}{% endblock %}

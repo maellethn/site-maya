@@ -11,9 +11,6 @@
 		
 	       <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
 		    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-		    <link href="{{asset('asset/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
-
 		    <link href="{{asset('asset/css/monCss.css')}}" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
     </head>
@@ -25,8 +22,8 @@
             {%  for categorie in categories %}
               <a href="{{path('collection',{id:categorie.id})}}"><h2 class="h4">{{categorie.Titre}}</h5></a>
             {% endfor %}
-          
           </div>
+
         </div>
         <nav class="navbar">
           <div class="container-fluid">
@@ -60,10 +57,7 @@
 
 		  <!-- Core plugin JavaScript-->
 		<script src="{{asset('asset/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-		<script src="{{asset('asset/vendor/datatables/jquery.dataTables.min.js')}}"></script>
 		<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-		<script src="{{asset('asset/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
     </body>
 
 </html>

@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
 {% block title %}Couleurs{% endblock %}
 
 {% block body %}
@@ -48,9 +48,7 @@
 
 {% endblock %}
 {% block javascripts %}
- 
-  <script src="{{asset('asset/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+{% include 'admin/adminJavascript.html.twig' %} 
 
   
   <script>
