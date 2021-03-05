@@ -8,7 +8,12 @@
   <div class="container-lg">
     <div class="card shadow mb-4 form-xs">
       <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center">Ajouter une oeuvre</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-center">{% if oeuvre is defined %}
+              Modifier la
+            {% else %}
+              Ajouter une
+            {% endif %}
+            oeuvre</h6>
       </div>
       <div class="card-body">
         {{ form_start(form)}}
@@ -19,7 +24,13 @@
         <div class="input-group mb-3 ">
           {{ form_row(form.slider,{'label':'Mettre en avant'})}}
         </div>
-         <button class="btn btn-primary" type="submit">Ajouter</button>
+        <button class="btn btn-primary" type="submit">
+          	{% if oeuvre is defined %}
+
+              Modifier
+            {% else %}
+              Ajouter
+            {% endif %}</button>
         {{form_end(form)}}
       </div>
     </div>

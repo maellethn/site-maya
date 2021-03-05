@@ -180,4 +180,67 @@ class AdminController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('couleurs');
     }
+
+    /**
+     * @Route("/categories/modification/{id}", name="modificationCategorie",methods={"GET","POST"})
+     */
+    public function ModificationCategorie(Request $req, EntityManagerInterface $manager, Categorie $categorie)
+    {
+        $form= $this->createForm(CategorieType::class,$categorie);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($categorie);
+            $manager->flush();
+            return $this->redirectToRoute('categories');
+        }
+       
+        return $this->render('admin/ajoutCategorie.html.twig', [
+            'categorie' => $categorie,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/oeuvres/modification/{id}", name="modificationOeuvre",methods={"GET","POST"})
+     */
+    public function ModificationOeuvre(Request $req, EntityManagerInterface $manager, Oeuvre $oeuvre)
+    {
+        $form= $this->createForm(OeuvreType::class,$oeuvre);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($oeuvre);
+            $manager->flush();
+            return $this->redirectToRoute('oeuvres');
+        }
+       
+        return $this->render('admin/ajoutOeuvre.html.twig', [
+            'oeuvre' => $oeuvre,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/couleurs/modification/{id}", name="modificationCouleur",methods={"GET","POST"})
+     */
+    public function ModificationCouleur(Request $req, EntityManagerInterface $manager, Couleur $couleur)
+    {
+        $form= $this->createForm(CouleurType::class,$couleur);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($couleur);
+            $manager->flush();
+            return $this->redirectToRoute('couleurs');
+        }
+       
+        return $this->render('admin/ajoutCouleur.html.twig', [
+            'couleur' => $couleur,
+            'form' => $form->createView(),
+        ]);
+    }
 }
