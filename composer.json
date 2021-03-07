@@ -12,6 +12,8 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "imagine/imagine": "^1.2",
+        "intervention/image": "^2.5",
         "phpdocumentor/reflection-docblock": "^5.2",
         "rosell-dk/webp-convert": "^2.4",
         "sensio/framework-extra-bundle": "^5.1",

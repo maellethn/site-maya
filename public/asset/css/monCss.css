@@ -129,25 +129,29 @@ footer i {
 	font-size: 1.5rem;
 }
 
+.contact a,
 .socials a {
+	margin: 1rem 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	text-align: center;
 }
-
-
 
 footer .contact i{
 	font-size: 1.5rem;
 }
 
-
-
 a {
 	text-decoration: none;
 	color: #067BC2;
 }
+
 a:hover {
 	text-decoration: none;
 	color: #067BC2;
+}
+
+.card-title {
+	font-weight: bold;
 }

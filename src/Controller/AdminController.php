@@ -89,7 +89,7 @@ class AdminController extends AbstractController
     		$manager->flush();
     		return $this->redirectToRoute('couleurs');
     	}
-       
+
         return $this->render('admin/ajoutCouleur.html.twig', [
         	'form' => $form->createView(),
         ]);
@@ -111,7 +111,6 @@ class AdminController extends AbstractController
     		$file=$form->get('File')->getData();
     		$name=md5(uniqid()).'.'.$file->guessExtension();
     		$file->move($path,$name);
-            
             //webPconvert
             $source = 'images/'.$name;
             $destination = $source . '.webp';
@@ -124,7 +123,7 @@ class AdminController extends AbstractController
     		$manager->flush();
     		return $this->redirectToRoute('oeuvres');
     	}
-       
+
         return $this->render('admin/ajoutOeuvre.html.twig', [
         	'form' => $form->createView(),
         ]);
@@ -145,7 +144,7 @@ class AdminController extends AbstractController
     		$manager->flush();
     		return $this->redirectToRoute('categories');
     	}
-       
+
         return $this->render('admin/ajoutCategorie.html.twig', [
         	'form' => $form->createView(),
         ]);
@@ -195,7 +194,7 @@ class AdminController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('categories');
         }
-       
+
         return $this->render('admin/ajoutCategorie.html.twig', [
             'categorie' => $categorie,
             'form' => $form->createView(),
@@ -216,7 +215,7 @@ class AdminController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('oeuvres');
         }
-       
+
         return $this->render('admin/ajoutOeuvre.html.twig', [
             'oeuvre' => $oeuvre,
             'form' => $form->createView(),
@@ -237,7 +236,7 @@ class AdminController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('couleurs');
         }
-       
+
         return $this->render('admin/ajoutCouleur.html.twig', [
             'couleur' => $couleur,
             'form' => $form->createView(),
