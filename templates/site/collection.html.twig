@@ -34,7 +34,8 @@
 			<div class="col">
 		    <div class="card">
 		    <a href="{{asset(oeuvre.Lien)}}">
-		      <img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}">
+					<img src="{{asset(oeuvre.Lien|imagine_filter('carre'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
+
 	      	</a>
 		      <div class="card-body">
 		        <h5 class="card-title">{{oeuvre.Titre}}</h5>
@@ -42,7 +43,7 @@
 		      </div>
 		    </div>
 		  </div>
-		{% endfor %} 
+		{% endfor %}
 		</div>
 	</div>
 {% endblock %}

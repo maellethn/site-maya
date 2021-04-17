@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="brand">
-	<img src="{{asset('asset/img/5_1.jpg.webp')}}">
+	<img src="{{asset('asset/img/5_1.jpg.webp')}}" alt='oeuvre de fond'>
 	<div class="text">
 		<h1 class="title">Maya THINON</h1>
 		<a href="{{path('collection',{id:randomCollection.id})}}" class="random"><i class="fas fa-random"></i>Voir une collection</a>
@@ -12,7 +12,10 @@
 </div>
 <div class="container-lg">
 	<!-- Lettre -->
-	<img src="{{asset('asset/img/lettre.jpg.webp')}}" alt="" class="lettre">
+	<div class="img_presentation"></div>
+	<div class="texte_presentation">
+	</div>
+	<img src="{{asset('asset/img/lettre.jpg.webp')}}" alt="lettre point contemporain" class="lettre">
 </div>
 
 {% endblock %}

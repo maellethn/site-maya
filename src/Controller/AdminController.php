@@ -24,6 +24,10 @@ use App\Entity\Oeuvre;
 use App\Repository\OeuvreRepository;
 use App\Form\OeuvreType;
 
+use App\Entity\Acceuil;
+use App\Repository\AcceuilRepository;
+use App\Form\AcceuilType;
+
 
 /**
  * @Route("/admin")
@@ -34,10 +38,23 @@ class AdminController extends AbstractController
     /**
      * @Route("/", name="admin")
      */
-    public function index(): Response
+    public function index(AcceuilRepository $acceuilRepo, Request $req, EntityManagerInterface $manager): Response
     {
+        $acceuil=$acceuilRepo->find(1);
+
+        $form = $this->createForm(AcceuilType::class, $acceuil);
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($acceuil);
+            $manager->flush();
+            return $this->redirectToRoute('$acceuil');
+        }
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'acceuil' => $acceuil,
+            'form' => $form->createView(),
         ]);
     }
 
