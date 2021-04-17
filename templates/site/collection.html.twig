@@ -29,21 +29,23 @@
 		  </a>
 		</div>
 	{% endif %}
-		<div class="row row-cols-1 row-cols-md-3 g-4" data-masonry='{"percentPosition" : true}'>
+		<div class="grid">
 		{% for oeuvre in collection.Oeuvre %}
-			<div class="col">
-		    <div class="card">
-		    <a href="{{asset(oeuvre.Lien)}}">
-					<img src="{{asset(oeuvre.Lien|imagine_filter('carre'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
-
-	      	</a>
-		      <div class="card-body">
-		        <h5 class="card-title">{{oeuvre.Titre}}</h5>
-		        <p class="card-text">{{oeuvre.Description}}</p>
-		      </div>
-		    </div>
-		  </div>
+			<div class="card">
+			<a href="{{asset(oeuvre.Lien)}}">
+				<img src="{{asset(oeuvre.Lien|imagine_filter('carre'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
+				</a>
+				<div class="card-body">
+					<h5 class="card-title">{{oeuvre.Titre}}</h5>
+					<p class="card-text">{{oeuvre.Description}}</p>
+				</div>
+			</div>
 		{% endfor %}
 		</div>
 	</div>
 {% endblock %}
+{% block javascripts %}
+<script src="{{asset('asset/js/categorie.js')}}"></script>
+
+{% endblock %}
+

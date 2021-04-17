@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: maya-thinon.ovh
+Token: 9c3ce7860bcc607922deb90b7a92d3b4c843dec0ec6e2a177d57edd219ddd9df
