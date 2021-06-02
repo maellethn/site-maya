@@ -8,21 +8,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Repository\CategorieRepository;
 use App\Entity\Categorie;
-
+use App\Repository\AcceuilRepository;
+use App\Entity\Acceuil;
 
 class SiteController extends AbstractController
 {
     /**
      * @Route("/", name="site")
      */
-    public function acceuil(CategorieRepository $catRepo): Response
+    public function acceuil(CategorieRepository $catRepo, AcceuilREpository $acceuilRepo): Response
     {
         $categories=$catRepo->findAll();
         $index=random_int(0, count($categories)-1);
         $collection=$categories[$index];
+        $acceuil = $acceuilRepo->find(1);
         return $this->render('site/index.html.twig', [
-             'categories' => $categories,
-             'randomCollection'=>$collection
+            'acceuil' => $acceuil,
+            'categories' => $categories,
+            'randomCollection'=>$collection
         ]);
     }
 

@@ -166,7 +166,7 @@ a:hover {
 	clear: both;
 }
 
-.card {
+.collection .card {
 	margin: .1%;
 	width: 33%;
 	float: left;
@@ -179,4 +179,17 @@ a:hover {
 
 .card-title {
 	font-weight: bold;
+}
+
+@media all and (max-width: 768px) {
+	.card{
+		width: 49%;
+	}
+}
+
+
+@media all and (max-width: 425px) {
+	.card{
+		width: 100%;
+	}
 }

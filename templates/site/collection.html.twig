@@ -6,7 +6,7 @@
 	<div class="banniere" style="background-color: {{collection.Couleur.hexa}};">
 		<h1 class="title"> {{collection.Titre}} </h1>
 	</div>
-	<div class="container-lg">
+	<div class="container-lg collection">
 	{% if slider is not empty %}
 		<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 		  <div class="carousel-inner">
@@ -32,8 +32,12 @@
 		<div class="grid">
 		{% for oeuvre in collection.Oeuvre %}
 			<div class="card">
-			<a href="{{asset(oeuvre.Lien)}}">
-				<img src="{{asset(oeuvre.Lien|imagine_filter('carre'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
+				<a href="{{asset(oeuvre.Lien)}}">
+					{% if oeuvre.lien|slice(-3) == 'pdf' %}
+						<img src="{{asset('asset/img/pdf-icon.png')}}" class="card-img-top" alt="{{oeuvre.Description}}">
+					{% else %}
+						<img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}">
+					{% endif %}
 				</a>
 				<div class="card-body">
 					<h5 class="card-title">{{oeuvre.Titre}}</h5>

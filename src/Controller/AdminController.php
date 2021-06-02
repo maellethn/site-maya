@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use App\Entity\Categorie;
@@ -49,7 +50,7 @@ class AdminController extends AbstractController
 
             $manager->persist($acceuil);
             $manager->flush();
-            return $this->redirectToRoute('$acceuil');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('admin/index.html.twig', [
@@ -115,7 +116,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/oeuvres/ajout", name="ajoutOeuvre",methods={"GET","POST"})
      */
-    public function AjoutOeuvre(Request $req, EntityManagerInterface $manager)
+    public function AjoutOeuvre(Request $req, EntityManagerInterface $manager, SluggerInterface $slugger)
     {
         $oeuvre= new Oeuvre;
         $form= $this->createForm(OeuvreType::class,$oeuvre);
@@ -124,17 +125,27 @@ class AdminController extends AbstractController
     	$path=$this->getParameter('kernel.project_dir').'/public/images';
 
     	if ($form->isSubmitted() && $form->isValid()) {
-
+            /** @var UploadedFile $file */
     		$file=$form->get('File')->getData();
     		$name=md5(uniqid()).'.'.$file->guessExtension();
-    		$file->move($path,$name);
-            //webPconvert
-            $source = 'images/'.$name;
-            $destination = $source . '.webp';
-            $options = [];
-            WebPConvert::convert($source, $destination, $options);
+            if ($file->guessExtension() == 'pdf'){
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+                $file->move($path, $newFilename);
+                $oeuvre->setLien('images/'.$newFilename);
+            } else {
+                $file->move($path, $name);
+                //webPconvert
+                $source = 'images/' . $name;
+                $destination = $source;
+                $options = [];
+                WebPConvert::convert($source, $destination, $options);
+                $oeuvre->setLien($destination);
+            }
 
-            $oeuvre->setLien($destination);
+
 
     		$manager->persist($oeuvre);
     		$manager->flush();

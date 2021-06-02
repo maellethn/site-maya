@@ -55,7 +55,6 @@ DirectoryIndex index.php
 	#RewriteCond %{REQUEST_URI} !^/public/
 	#RewriteRule ^(.*)$ /public/$1 [L]
 
-</IfModule>
 
 <IfModule !mod_rewrite.c>
     <IfModule mod_alias.c>
@@ -66,3 +65,22 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+
+# BEGIN Cache-Control Headers
+<IfModule mod_headers.c>
+ <FilesMatch "\\.(ico|jpe?g|png|gif|swf|css|gz|jpg|webp)$">
+ Header set Cache-Control "max-age=2592000, public"
+ </FilesMatch>
+ <FilesMatch "\.(js)$">
+ Header set Cache-Control "max-age=2592000, private"
+ </FilesMatch>
+<filesMatch "\.(html|htm)$">
+Header set Cache-Control "max-age=7200, public"
+</filesMatch>
+# Disable caching for scripts and other dynamic files
+<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+Header unset Cache-Control
+</FilesMatch>
+</IfModule>
+# END Cache-Control Headers

@@ -28,7 +28,6 @@ class Oeuvre
      */
     private $Description;
 
-   
     private $File;
 
     /**
@@ -122,6 +121,18 @@ class Oeuvre
         $this->slider = $slider;
 
         return $this;
+    }
+
+    public function getWidth(): ?string
+    {
+        $width = getimagesize($this->Lien)[0];
+        return $width;
+    }
+
+    public function getHeight(): ?string
+    {
+        $height = getimagesize($this->Lien)[1];
+        return $height;
     }
 
 }
