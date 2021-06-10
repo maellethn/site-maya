@@ -18,7 +18,7 @@ class SiteController extends AbstractController
      */
     public function acceuil(CategorieRepository $catRepo, AcceuilREpository $acceuilRepo): Response
     {
-        $categories=$catRepo->findAll();
+        $categories=$catRepo->findBy([],['Titre'=>'ASC']);
         $index=random_int(0, count($categories)-1);
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);

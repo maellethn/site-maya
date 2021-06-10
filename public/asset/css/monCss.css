@@ -11,7 +11,14 @@ body {
 
 header {
 	position: fixed;
+	width: 100%;
 	z-index: 1;
+}
+
+#navbarToggleExternalContent {
+	width: 100%;
+	backdrop-filter: grayscale(1) contrast(3) blur(5px);
+  border-radius: 5px;
 }
 
 .p-4 {
@@ -70,12 +77,6 @@ a:hover {
 	color: #067BC2;
 	border-color: #067BC2;
 	font-size: 2rem;
-}
-
-.lettre {
-	margin-top: 2rem;
-	width: 100%;
-	height: auto;
 }
 
 .banniere {
@@ -179,6 +180,10 @@ a:hover {
 
 .card-title {
 	font-weight: bold;
+}
+
+.clear {
+	clear: both;
 }
 
 @media all and (max-width: 768px) {
