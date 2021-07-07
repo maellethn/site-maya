@@ -51,4 +51,14 @@ class SiteController extends AbstractController
              'slider'=>$slider,
         ]);
     }
+
+    /**
+     * @Route("/puzzle", name="puzzle")
+     */
+    public function PuzzleAction()
+    {
+        return $this->render('site/puzzle.html.twig', [
+
+        ]);
+    }
 }
