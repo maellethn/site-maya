@@ -19,7 +19,7 @@
 <div class="container-lg">
 	<!-- Lettre -->
 	{% if acceuil.image %}
-		<div class="img_presentation"><img src="{{asset(acceuil.image)|imagine_filter('carre')}}" alt="lettre point contemporain"></div>
+		<div class="img_presentation"><img src="{{acceuil.image| imagine_filter('carre')}}" width="250" height="250" alt="lettre point contemporain"></div>
 	{% endif %}
 	{% if acceuil.texte %}
 	<div class="texte_presentation"> {{acceuil.texte|raw}}</div>

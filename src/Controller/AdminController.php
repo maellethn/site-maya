@@ -139,7 +139,7 @@ class AdminController extends AbstractController
                 $file->move($path, $name);
                 //webPconvert
                 $source = 'images/' . $name;
-                $destination = $source;
+                $destination = $source . '.webp';
                 $options = [];
                 WebPConvert::convert($source, $destination, $options);
                 $oeuvre->setLien($destination);

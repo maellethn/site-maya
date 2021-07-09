@@ -11,17 +11,21 @@ use App\Entity\Categorie;
 use App\Repository\AcceuilRepository;
 use App\Entity\Acceuil;
 
+use \Liip\ImagineBundle\Imagine\Cache\CacheManager;
+
 class SiteController extends AbstractController
 {
     /**
      * @Route("/", name="site")
      */
-    public function acceuil(CategorieRepository $catRepo, AcceuilREpository $acceuilRepo): Response
+    public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
     {
+
         $categories=$catRepo->findBy([],['Titre'=>'ASC']);
         $index=random_int(0, count($categories)-1);
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);
+        $resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
             'categories' => $categories,
