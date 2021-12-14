@@ -22,7 +22,10 @@ class SiteController extends AbstractController
     {
 
         $categories=$catRepo->findBy([],['Titre'=>'ASC']);
-        $index=random_int(0, count($categories)-1);
+        if(count($categories)>0)
+            $index=random_int(0, count($categories)-1);
+        else 
+            $index=0;
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);
         $resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
@@ -38,13 +41,15 @@ class SiteController extends AbstractController
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie, CacheManager $cacheManager): Response
     {
 
         $categories = $catRepo->findAll();
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
+                $resolvedPath = $cacheManager->getBrowserPath($oeuvre->getLien(), 'carre');
+                //dd($resolvedPath);
                 if ($oeuvre->getSlider()) {
                     $slides[] = $oeuvre;
                 }

@@ -141,11 +141,9 @@ class AdminController extends AbstractController
                 $source = 'images/' . $name;
                 $destination = $source . '.webp';
                 $options = [];
-                WebPConvert::convert($source, $destination, $options);
-                $oeuvre->setLien($destination);
+                //WebPConvert::convert($source, $destination, $options);
+                $oeuvre->setLien($source);
             }
-
-
 
     		$manager->persist($oeuvre);
     		$manager->flush();

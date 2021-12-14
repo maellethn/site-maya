@@ -2,8 +2,6 @@
 
 {% block stylesheets %}
 	<link href="{{asset('asset/css/nivo-lightbox.css')}}" rel="stylesheet" type="text/css">
-
-
 {% endblock %}
 
 {% block title %}
@@ -12,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="banniere" style="background-color: {{collection.Couleur.hexa}};">
+	<div class="banniere" style="background-color: {{collection.Couleur ? collection.Couleur.hexa : 'white' }};">
 		<h1 class="title">
 			{{collection.Titre}}
 		</h1>
