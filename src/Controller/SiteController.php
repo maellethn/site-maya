@@ -28,15 +28,12 @@ class SiteController extends AbstractController
             $index=0;
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);
-        $resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
             'categories' => $categories,
             'randomCollection'=>$collection
         ]);
     }
-
-
 
     /**
      * @Route("/collection/{id}", name="collection")
@@ -48,8 +45,7 @@ class SiteController extends AbstractController
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
-                $resolvedPath = $cacheManager->getBrowserPath($oeuvre->getLien(), 'carre');
-                //dd($resolvedPath);
+            
                 if ($oeuvre->getSlider()) {
                     $slides[] = $oeuvre;
                 }
@@ -67,7 +63,7 @@ class SiteController extends AbstractController
     public function PuzzleAction()
     {
         return $this->render('site/puzzle.html.twig', [
-
+            
         ]);
     }
 }

@@ -18,7 +18,7 @@ class AcceuilType extends AbstractType
             ->add('texte', CKEditorType::class, [
                 'row_attr' => ['class' => 'input-group mb-3'],
                 'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'input-group-text']
+                'label_attr' => ['class' => 'input-group-text'],
             ])
             ->add('image', TextType::class, [
                 'row_attr' => ['class' => 'input-group mb-3'],

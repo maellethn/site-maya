@@ -17,8 +17,8 @@ header {
 
 #navbarToggleExternalContent {
 	width: 100%;
-	backdrop-filter: grayscale(1) contrast(3) blur(5px);
-  border-radius: 5px;
+	backdrop-filter: grayscale(0) contrast() blur(5px);
+  	border-radius: 5px;
 }
 
 .p-4 {

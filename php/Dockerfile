@@ -17,4 +17,11 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install pdo pdo_mysql gd opcache intl zip calendar dom mbstring gd zip xsl
 RUN pecl install apcu && docker-php-ext-enable apcu
 
+RUN echo "file_uploads = On\n" \
+         "memory_limit = 500M\n" \
+         "upload_max_filesize = 500M\n" \
+         "post_max_size = 500M\n" \
+         "max_execution_time = 600\n" \
+         > /usr/local/etc/php/conf.d/uploads.ini
+
 WORKDIR /var/www/
