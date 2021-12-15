@@ -47,7 +47,7 @@
 						<img src="{{asset('asset/img/pdf-icon.png')}}" class="card-img-top" alt="{{oeuvre.Description}}">
 					{% else %}
 						<a href="{{asset(oeuvre.Lien)}}" title="{{oeuvre.Titre}}" data-lightbox-gallery="gallery1">
-							<img src="{{asset(oeuvre.Lien|imagine_filter('collection'))}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
+							<img src="{{asset(oeuvre.Lien|imagine_filter('collection'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
 						</a>
 
 					{% endif %}
@@ -68,8 +68,6 @@
 			$('a').nivoLightbox({
 				effect:'fade',
 			});
-			
-
 		});
 
 	</script>
