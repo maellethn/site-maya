@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block body %}
+<div class="help-box"><i class="fas fa-question"></i> Comment ça marche
+	<span class="helper-text">Déplacez les images en cliquant dessus <br>Tournez les en double-cliquant</span>
+</div>
 <div class="puzzle_wrapper">
 	<img src="{{asset('puzzleimages/decoupe1.png')}}" alt="drag-and-drop image script"
 	title="drag-and-drop image script" class="dragme">
