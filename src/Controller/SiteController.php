@@ -60,10 +60,11 @@ class SiteController extends AbstractController
     /**
      * @Route("/puzzle", name="puzzle")
      */
-    public function PuzzleAction()
+    public function PuzzleAction(CategorieRepository $catRepo)
     {
+        $categories = $catRepo->findAll();
         return $this->render('site/puzzle.html.twig', [
-            
+            'categories' => $categories,
         ]);
     }
 }
