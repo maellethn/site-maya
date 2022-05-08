@@ -14,7 +14,9 @@
     </head>
     <body>
     <header>
-    {% if categories is defined %}
+    {% set currentPath = path(app.request.attributes.get('_route'),
+                       app.request.attributes.get('_route_params')) %}
+    {% if categories is defined and currentPath!="/admin/categories" %}
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
             {%  for categorie in categories %}

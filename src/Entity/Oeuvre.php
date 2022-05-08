@@ -135,4 +135,9 @@ class Oeuvre
         return $height;
     }
 
+    public function __toString()
+    {
+        return $this->Titre;
+    }
+
 }

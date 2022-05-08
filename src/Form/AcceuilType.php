@@ -20,11 +20,11 @@ class AcceuilType extends AbstractType
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'input-group-text'],
             ])
-            ->add('image', TextType::class, [
-                'row_attr' => ['class' => 'input-group mb-3'],
-                'attr' => ['class' => 'form-control'],
+            ->add('Oeuvre', null, [
+                'row_attr' =>['class'=>'input-group mb-3'],
+                'attr'=> ['class' => 'form-select'],
                 'label_attr' => ['class' => 'input-group-text']
-            ])
+                ])
         ;
     }
 

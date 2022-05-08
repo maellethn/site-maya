@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block title %}
-	Ernest Thinon
+	Maya Thinon
 	{{collection.Titre}}
 {% endblock %}
 
@@ -51,7 +51,7 @@
 					{% else %}
 						{% set link = asset(oeuvre.Lien)|slice(-5) == '.webp' ? asset(oeuvre.Lien)|replace({'.webp': '',}) : asset(oeuvre.Lien) %}
 						<a href="{{link}}" title="{{oeuvre.Titre}}" data-lightbox-gallery="gallery1">
-							<img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}">
+							<img src="{{asset(oeuvre.Lien|imagine_filter('collection'))}}" class="card-img-top" alt="{{oeuvre.Description}}">
 						</a>
 
 					{% endif %}
