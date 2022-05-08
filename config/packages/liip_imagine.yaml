@@ -11,3 +11,6 @@ liip_imagine:
                     mode: outbound
         collection:
             quality: 80
+            filters:
+                scale:
+                    dim: [500, 7000]

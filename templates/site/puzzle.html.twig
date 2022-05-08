@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
@@ -9,9 +9,6 @@
 {% endblock %}
 
 {% block body %}
-<div class="help-box"><i class="fas fa-question"></i> Comment ça marche
-	<span class="helper-text">Déplacez les images en cliquant dessus <br>Tournez les en double-cliquant</span>
-</div>
 <div class="puzzle_wrapper">
 	<img src="{{asset('puzzleimages/decoupe1.png')}}" alt="drag-and-drop image script"
 	title="drag-and-drop image script" class="dragme">
@@ -22,77 +19,55 @@
 {% block javascripts %}
  <script>
   	function startDrag(e) {
-		// determine event object
-		if (!e) {
-			var e = window.event;
-		}
-		if(e.preventDefault) e.preventDefault();
-
-		// IE uses srcElement, others use target
-		targ = e.target ? e.target : e.srcElement;
-
-		if (targ.className != 'dragme') {return};
-		var elements = document.getElementsByClassName('dragme');
-		[].forEach.call(elements, function (el) {
-			el.style.zIndex = "0";
-		});
-		targ.style.zIndex = "1";
-		// calculate event X, Y coordinates
-			offsetX = e.clientX;
-			offsetY = e.clientY;
-
-		// assign default values for top and left properties
-		if(!targ.style.left) { targ.style.left='0px'};
-		if (!targ.style.top) { targ.style.top='0px'};
-
-		// calculate integer values for top and left 
-		// properties
-		coordX = parseInt(targ.style.left);
-		coordY = parseInt(targ.style.top);
-		drag = true;
-
-		// move div element
-			document.onmousemove=dragDiv;
-		return false;
-		
-	}
-	function dragDiv(e) {
-		if (!drag) {return};
-		if (!e) { var e= window.event};
-		// var targ=e.target?e.target:e.srcElement;
-		// move div element
-		targ.style.left=coordX+e.clientX-offsetX+'px';
-		targ.style.top=coordY+e.clientY-offsetY+'px';
-		return false;
-	}
-	function stopDrag() {
-		drag=false;
-	}
-	window.onload = function() {
-		document.onmousedown = startDrag;
-		document.onmouseup = stopDrag;
-		$(document).on('dblclick', '.dragme', function(e) {
-			targ = e.target ? e.target : e.srcElement;
-			tr= $(targ).css("-webkit-transform") || targ.css("-moz-transform") || targ.css("-ms-transform") || targ.css("-o-transform") || '',
-			info = {rad: 0, deg: 0};
-			if (tr = tr.match('matrix\\((.*)\\)')) {
-				
-			tr = tr[1].split(',');
-				if(typeof tr[0] != 'undefined' && typeof tr[1] != 'undefined') {
-					info.rad = Math.atan2(tr[1], tr[0]);
-					info.deg = parseFloat((info.rad * 180 / Math.PI).toFixed(1));
+				// determine event object
+				if (!e) {
+					var e = window.event;
 				}
-			}
-			console.log(info.deg);
-			var rotation = info.deg;
-			rotation +=10;
-			$(targ).css({'-webkit-transform' : 'rotate('+ rotation +'deg)',
-					'-moz-transform' : 'rotate('+ rotation +'deg)',
-					'-ms-transform' : 'rotate('+ rotation +'deg)',
-					'transform' : 'rotate('+ rotation +'deg)'});
+                if(e.preventDefault) e.preventDefault();
 
-		});
-	}
-	
+				// IE uses srcElement, others use target
+				targ = e.target ? e.target : e.srcElement;
+
+				if (targ.className != 'dragme') {return};
+				var elements = document.getElementsByClassName('dragme');
+				[].forEach.call(elements, function (el) {
+					el.style.zIndex = "0";
+				});
+				targ.style.zIndex = "1";
+				// calculate event X, Y coordinates
+					offsetX = e.clientX;
+					offsetY = e.clientY;
+
+				// assign default values for top and left properties
+				if(!targ.style.left) { targ.style.left='0px'};
+				if (!targ.style.top) { targ.style.top='0px'};
+
+				// calculate integer values for top and left 
+				// properties
+				coordX = parseInt(targ.style.left);
+				coordY = parseInt(targ.style.top);
+				drag = true;
+
+				// move div element
+					document.onmousemove=dragDiv;
+                return false;
+				
+			}
+			function dragDiv(e) {
+				if (!drag) {return};
+				if (!e) { var e= window.event};
+				// var targ=e.target?e.target:e.srcElement;
+				// move div element
+				targ.style.left=coordX+e.clientX-offsetX+'px';
+				targ.style.top=coordY+e.clientY-offsetY+'px';
+				return false;
+			}
+			function stopDrag() {
+				drag=false;
+			}
+			window.onload = function() {
+				document.onmousedown = startDrag;
+				document.onmouseup = stopDrag;
+			}
  </script>
 {% endblock %}
