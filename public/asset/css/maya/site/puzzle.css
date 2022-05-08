@@ -15,7 +15,6 @@
     position: relative;
     display: flex;
     margin-right: 2rem;
-    border-bottom: 1px dotted #FFF; /* If you want dots under the hoverable text */
     color: #067BC2;
     font-size: 1.5rem;
     z-index: 10;
