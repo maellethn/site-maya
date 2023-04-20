@@ -27,6 +27,11 @@ class Acceuil
      */
     private $image;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Oeuvre::class,cascade={"persist", "remove"})
+     */
+    private $Oeuvre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Acceuil
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getOeuvre(): ?Oeuvre
+    {
+        return $this->Oeuvre;
+    }
+
+    public function setOeuvre(?Oeuvre $Oeuvre): self
+    {
+        $this->Oeuvre = $Oeuvre;
 
         return $this;
     }

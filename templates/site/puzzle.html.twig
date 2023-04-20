@@ -1,18 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-
-
+<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
-	Maya Thinon Puzzle
+	Ernest Thinon Puzzle
 {% endblock %}
 
 {% block body %}
-  <div id="draggable" class="dragme">"Hello World!"</div>
-<img src="https://lh4.googleusercontent.com/-8tqTFxi2ebU/Ufo4j_thf7I/AAAAAAAADFM/_ZBQctm9e8E/w270-h203-no/flower.jpg" alt="drag-and-drop image script"
- title="drag-and-drop image script" class="dragme">
+<div class="puzzle_wrapper">
+	<img src="{{asset('puzzleimages/decoupe1.png')}}" alt="drag-and-drop image script"
+	title="drag-and-drop image script" class="dragme">
+	<img src="{{asset('puzzleimages/decoupe2.png')}}" alt="drag-and-drop image script"
+	title="drag-and-drop image script" class="dragme">
+</div>
 {% endblock %}
 {% block javascripts %}
  <script>
@@ -21,11 +23,17 @@
 				if (!e) {
 					var e = window.event;
 				}
+                if(e.preventDefault) e.preventDefault();
 
 				// IE uses srcElement, others use target
-				var targ = e.target ? e.target : e.srcElement;
+				targ = e.target ? e.target : e.srcElement;
 
 				if (targ.className != 'dragme') {return};
+				var elements = document.getElementsByClassName('dragme');
+				[].forEach.call(elements, function (el) {
+					el.style.zIndex = "0";
+				});
+				targ.style.zIndex = "1";
 				// calculate event X, Y coordinates
 					offsetX = e.clientX;
 					offsetY = e.clientY;
@@ -34,7 +42,7 @@
 				if(!targ.style.left) { targ.style.left='0px'};
 				if (!targ.style.top) { targ.style.top='0px'};
 
-				// calculate integer values for top and left
+				// calculate integer values for top and left 
 				// properties
 				coordX = parseInt(targ.style.left);
 				coordY = parseInt(targ.style.top);
@@ -42,12 +50,13 @@
 
 				// move div element
 					document.onmousemove=dragDiv;
-
+                return false;
+				
 			}
 			function dragDiv(e) {
 				if (!drag) {return};
 				if (!e) { var e= window.event};
-				var targ=e.target?e.target:e.srcElement;
+				// var targ=e.target?e.target:e.srcElement;
 				// move div element
 				targ.style.left=coordX+e.clientX-offsetX+'px';
 				targ.style.top=coordY+e.clientY-offsetY+'px';

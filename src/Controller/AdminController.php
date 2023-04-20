@@ -47,6 +47,8 @@ class AdminController extends AbstractController
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $link=$form->get('Oeuvre')->getData()->getLien();
+            $acceuil->setImage($link);
 
             $manager->persist($acceuil);
             $manager->flush();
@@ -123,10 +125,11 @@ class AdminController extends AbstractController
     	$form->handleRequest($req);
 
     	$path=$this->getParameter('kernel.project_dir').'/public/images';
-
+    
     	if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $file */
     		$file=$form->get('File')->getData();
+            
     		$name=md5(uniqid()).'.'.$file->guessExtension();
             if ($file->guessExtension() == 'pdf'){
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -141,11 +144,9 @@ class AdminController extends AbstractController
                 $source = 'images/' . $name;
                 $destination = $source . '.webp';
                 $options = [];
-                WebPConvert::convert($source, $destination, $options);
-                $oeuvre->setLien($destination);
+                //WebPConvert::convert($source, $destination, $options);
+                $oeuvre->setLien($source);
             }
-
-
 
     		$manager->persist($oeuvre);
     		$manager->flush();

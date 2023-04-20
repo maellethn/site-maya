@@ -14,7 +14,9 @@
     </head>
     <body>
     <header>
-    {% if categories is defined %}
+    {% set currentPath = path(app.request.attributes.get('_route'),
+                       app.request.attributes.get('_route_params')) %}
+    {% if categories is defined and currentPath!="/admin/categories" %}
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="p-4">
             {%  for categorie in categories %}
@@ -54,8 +56,7 @@
     <script src="https://kit.fontawesome.com/b06436898d.js" crossorigin="anonymous"></script>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" async></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 
 

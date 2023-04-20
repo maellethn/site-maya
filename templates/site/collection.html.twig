@@ -2,17 +2,16 @@
 
 {% block stylesheets %}
 	<link href="{{asset('asset/css/nivo-lightbox.css')}}" rel="stylesheet" type="text/css">
-
-
+	<link href="{{asset('asset/css/themes/default/default.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
-	Maya Thinon
+	Ernest Thinon
 	{{collection.Titre}}
 {% endblock %}
 
 {% block body %}
-	<div class="banniere" style="background-color: {{collection.Couleur.hexa}};">
+	<div class="banniere" style="background-color: {{collection.Couleur ? collection.Couleur.hexa : 'white' }};">
 		<h1 class="title">
 			{{collection.Titre}}
 		</h1>
@@ -44,12 +43,14 @@
 
 			{% for oeuvre in collection.Oeuvre %}
 				<div class="card">
+				
 					{% if oeuvre.lien|slice(-3) == 'pdf' %}
+						<a href="{{asset(oeuvre.lien)}}" target="_blank">
 						<img src="{{asset('asset/img/pdf-icon.png')}}" class="card-img-top" alt="{{oeuvre.Description}}">
+						</a>
 					{% else %}
 						<a href="{{asset(oeuvre.Lien)}}" title="{{oeuvre.Titre}}">
 <img src="{{asset(oeuvre.Lien|slice(0,-5)|imagine_filter('collection'))}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
-
 
 						</a>
 
@@ -68,9 +69,10 @@
 	<script src="{{asset('asset/js/nivo-lightbox.js')}}"></script>
 	<script>
 		$(document).ready(function(){
-			$('a').nivoLightbox();
+			$('a').nivoLightbox({
+				effect:'fade',
+			});
 		});
-
 	</script>
 
 {% endblock %}
