@@ -12,6 +12,7 @@ use App\Repository\AcceuilRepository;
 use App\Entity\Acceuil;
 
 use \Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use \Liip\ImagineBundle\Command\ResolveCacheCommand;
 
 class SiteController extends AbstractController
 {
@@ -38,13 +39,14 @@ class SiteController extends AbstractController
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie, ResolveCacheCommand $commande): Response
     {
 
         $categories = $catRepo->findAll();
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
+               $commande->runCacheImageResolve($oeuvre->getLien(), 'collection');
                 if ($oeuvre->getSlider()) {
                     $slides[] = $oeuvre;
                 }
