@@ -49,9 +49,9 @@
 						<img src="{{asset('asset/img/pdf-icon.png')}}" class="card-img-top" alt="{{oeuvre.Description}}">
 						</a>
 					{% else %}
-						{% set link = asset(oeuvre.Lien)|slice(-5) == '.webp' ? asset(oeuvre.Lien)|replace({'.webp': '',}) : asset(oeuvre.Lien) %}
-						<a href="{{link}}" title="{{oeuvre.Titre}}" data-lightbox-gallery="gallery1">
-							<img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}">
+						<a href="{{asset(oeuvre.Lien)}}" title="{{oeuvre.Titre}}">
+<img src="{{asset(oeuvre.Lien|slice(0,-5)|imagine_filter('collection'))}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
+
 						</a>
 
 					{% endif %}

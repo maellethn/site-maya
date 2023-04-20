@@ -12,6 +12,7 @@ use App\Repository\AcceuilRepository;
 use App\Entity\Acceuil;
 
 use \Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use \Liip\ImagineBundle\Command\ResolveCacheCommand;
 
 class SiteController extends AbstractController
 {
@@ -22,12 +23,10 @@ class SiteController extends AbstractController
     {
 
         $categories=$catRepo->findBy([],['Titre'=>'ASC']);
-        if(count($categories)>0)
-            $index=random_int(0, count($categories)-1);
-        else 
-            $index=0;
+        $index=random_int(0, count($categories)-1);
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);
+        $resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
             'categories' => $categories,
@@ -35,17 +34,19 @@ class SiteController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie, CacheManager $cacheManager): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie, ResolveCacheCommand $commande): Response
     {
 
         $categories = $catRepo->findAll();
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
-            
+               $commande->runCacheImageResolve($oeuvre->getLien(), 'collection');
                 if ($oeuvre->getSlider()) {
                     $slides[] = $oeuvre;
                 }
@@ -60,11 +61,10 @@ class SiteController extends AbstractController
     /**
      * @Route("/puzzle", name="puzzle")
      */
-    public function PuzzleAction(CategorieRepository $catRepo)
+    public function PuzzleAction()
     {
-        $categories = $catRepo->findAll();
         return $this->render('site/puzzle.html.twig', [
-            'categories' => $categories,
+
         ]);
     }
 }
