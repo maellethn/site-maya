@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.3"
 services:
   db:
     image: mysql
@@ -37,6 +37,6 @@ services:
             - dev
 networks:
     dev:
- 
+
 volumes:
     db-data:
