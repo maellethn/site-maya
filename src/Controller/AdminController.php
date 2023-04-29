@@ -194,6 +194,14 @@ class AdminController extends AbstractController
      */
     public function SuppressionOeuvres(Oeuvre $oeuvre, EntityManagerInterface $manager)
     {
+        $path=$this->getParameter('kernel.project_dir').'/public/';
+        $imageFilePath=$path.$oeuvre->getLien();
+        if (file_exists($imageFilePath)) {
+            unlink($imageFilePath);
+        }
+        if (file_exists($imageFilePath.'.webp')) {
+            unlink($imageFilePath);
+        }
         $manager->remove($oeuvre);
         $manager->flush();
         return $this->redirectToRoute('oeuvres');

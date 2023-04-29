@@ -10,10 +10,10 @@
 
 {% block body %}
 <div class="puzzle_wrapper">
-	<img src="{{asset('puzzleimages/decoupe1.png')}}" alt="drag-and-drop image script"
-	title="drag-and-drop image script" class="dragme">
-	<img src="{{asset('puzzleimages/decoupe2.png')}}" alt="drag-and-drop image script"
-	title="drag-and-drop image script" class="dragme">
+	{% for oeuvre in collection.Oeuvre %}
+		<img src="{{asset(oeuvre.Lien)}}" alt="drag-and-drop image script"
+		title="drag-and-drop image script" class="dragme">
+	{% endfor %}
 </div>
 {% endblock %}
 {% block javascripts %}

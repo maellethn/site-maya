@@ -35,6 +35,11 @@ class Categorie
      */
     private $Couleur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $public;
+
     public function __construct()
     {
         $this->Oeuvre = new ArrayCollection();
@@ -100,6 +105,18 @@ class Categorie
     public function setCouleur(?Couleur $Couleu): self
     {
         $this->Couleur = $Couleu;
+
+        return $this;
+    }
+
+    public function getPublic(): ?bool
+    {
+        return $this->public;
+    }
+
+    public function setPublic(bool $public): self
+    {
+        $this->public = $public;
 
         return $this;
     }

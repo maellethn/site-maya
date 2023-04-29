@@ -32,6 +32,11 @@ class Acceuil
      */
     private $Oeuvre;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
+     */
+    private $puzzle_collection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Acceuil
     public function setOeuvre(?Oeuvre $Oeuvre): self
     {
         $this->Oeuvre = $Oeuvre;
+
+        return $this;
+    }
+
+    public function getPuzzleCollection(): ?Categorie
+    {
+        return $this->puzzle_collection;
+    }
+
+    public function setPuzzleCollection(?Categorie $puzzle_collection): self
+    {
+        $this->puzzle_collection = $puzzle_collection;
 
         return $this;
     }

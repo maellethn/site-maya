@@ -32,5 +32,7 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    #bloc admin acces for not admin users
     access_control:
+        - { path: /admin, roles: ['ROLE_ADMIN'] }
         

@@ -21,7 +21,7 @@ class SiteController extends AbstractController
     public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
     {
 
-        $categories=$catRepo->findBy([],['Titre'=>'ASC']);
+        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
         if(count($categories)>0)
             $index=random_int(0, count($categories)-1);
         else 
@@ -41,7 +41,7 @@ class SiteController extends AbstractController
     public function collection(CategorieRepository $catRepo, Categorie $categorie, CacheManager $cacheManager): Response
     {
 
-        $categories = $catRepo->findAll();
+        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
@@ -60,11 +60,12 @@ class SiteController extends AbstractController
     /**
      * @Route("/puzzle", name="puzzle")
      */
-    public function PuzzleAction(CategorieRepository $catRepo)
+    public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
     {
-        $categories = $catRepo->findAll();
+        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
         return $this->render('site/puzzle.html.twig', [
             'categories' => $categories,
+            'collection' => $acceuil = $acceuilRepo->find(1)->getPuzzleCollection(),
         ]);
     }
 }
