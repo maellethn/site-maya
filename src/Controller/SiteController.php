@@ -19,14 +19,14 @@ class SiteController extends AbstractController
     /**
      * @Route("/", name="site")
      */
-    public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
+    public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
 
         $categories=$catRepo->findBy([],['Titre'=>'ASC']);
         $index=random_int(0, count($categories)-1);
         $collection=$categories[$index];
         $acceuil = $acceuilRepo->find(1);
-        $resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
+        //$resolvedPath = $cacheManager->getBrowserPath($acceuil->getImage(), 'carre');
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
             'categories' => $categories,
@@ -39,14 +39,14 @@ class SiteController extends AbstractController
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie, ResolveCacheCommand $commande): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie): Response
     {
 
         $categories = $catRepo->findAll();
 
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
-               $commande->runCacheImageResolve($oeuvre->getLien(), 'collection');
+               //$commande->runCacheImageResolve($oeuvre->getLien(), 'collection');
                 if ($oeuvre->getSlider()) {
                     $slides[] = $oeuvre;
                 }
