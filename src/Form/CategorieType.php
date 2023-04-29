@@ -23,6 +23,11 @@ class CategorieType extends AbstractType
                 'attr'=> ['class' => 'form-select'],
                 'label_attr' => ['class' => 'input-group-text']
             ])
+            ->add('public', null, [
+                'row_attr' =>['class'=>'form-check'],
+                'attr'=> ['class' => 'form-check-input'],
+                'label_attr' => ['class' => 'form-check-label']
+            ])
         ;
     }
 

@@ -25,6 +25,11 @@ class AcceuilType extends AbstractType
                 'attr'=> ['class' => 'form-select'],
                 'label_attr' => ['class' => 'input-group-text']
                 ])
+            ->add('puzzle_collection', null, [
+                'row_attr' =>['class'=>'input-group mb-3'],
+                'attr'=> ['class' => 'form-select'],
+                'label_attr' => ['class' => 'input-group-text']
+                ])
         ;
     }
 
