@@ -36,7 +36,6 @@ class Couleur
 
     public function __construct()
     {
-        $this->collections = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
@@ -86,7 +85,7 @@ class Couleur
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
-            $category->setCouleu($this);
+            $category->setCouleur($this);
         }
 
         return $this;
@@ -96,8 +95,8 @@ class Couleur
     {
         if ($this->categories->removeElement($category)) {
             // set the owning side to null (unless already changed)
-            if ($category->getCouleu() === $this) {
-                $category->setCouleu(null);
+            if ($category->getCouleur() === $this) {
+                $category->setCouleur(null);
             }
         }
 

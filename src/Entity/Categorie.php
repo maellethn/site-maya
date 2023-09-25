@@ -26,7 +26,7 @@ class Categorie
     private $Titre;
 
     /**
-     * @ORM\OneToMany(targetEntity=Oeuvre::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Oeuvre::class, mappedBy="categorie",orphanRemoval=true)
      */
     private $Oeuvre;
 

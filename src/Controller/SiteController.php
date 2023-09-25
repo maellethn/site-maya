@@ -42,9 +42,10 @@ class SiteController extends AbstractController
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie, AcceuilRepository $acceuilRepo): Response
     {
 
+        
         $categories=$catRepo->findAll();
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
@@ -53,6 +54,11 @@ class SiteController extends AbstractController
                     $slides[] = $oeuvre;
                 }
             }
+        $puzzle=$acceuilRepo->find(1)->getPuzzleCollection();
+        for ($i=0; $i < count($categories); $i++) { 
+            if ($categories[$i]->getId() == $puzzle->getId())
+                unset($categories[$i]);
+        }
         return $this->render('site/collection.html.twig', [
              'categories' => $categories,
              'collection' => $categorie,
