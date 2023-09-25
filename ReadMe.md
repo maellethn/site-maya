@@ -1,18 +1,10 @@
 ## Site Ernest
 
 # Initialisation et instalation
-
-## Lancement des serveurs
-Lancer le serveur php sur le dossier public
-
-`php -S 127.0.0.1:8000 -t public`
-
-Lancer le serveur mysql
-
-`sudo service mysql start  `
+Lancement des container docker 
+`make up`
 
 ## Comandes utiles
 
-vider les caches symfony
-
-`php bin/console c:c `
+lancement des commandes php dans le container suivant 
+`docker exec -it www_site-maya bash`

@@ -47,7 +47,9 @@ class AdminController extends AbstractController
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $link=$form->get('Oeuvre')->getData()->getLien();
+            $link=null;
+            if ($form->get('Oeuvre')->getData())
+                $link=$form->get('Oeuvre')->getData()->getLien();
             $acceuil->setImage($link);
 
             $manager->persist($acceuil);

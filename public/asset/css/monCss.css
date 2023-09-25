@@ -49,13 +49,18 @@ header {
 	display: flex;
 	align-items: center;
 	max-width: fit-content;
+	font-weight: 700px;
 	margin: 15% auto 0 auto;
 	background-color: #067BC2;
 	color: white;
-	padding: 0 .5rem;
+	padding: 0.5rem  1.5rem;
 	border-radius: 1rem;
 	border: solid 1px #067BC2;
 	text-decoration: none;
+}
+
+.random i {
+	margin-right: 1rem;
 }
 
 

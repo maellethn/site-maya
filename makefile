@@ -1,13 +1,14 @@
 # Executables (local)
-DOCKER_COMP = docker
+DOCKER_COMP = docker-compose
+DOCKER = docker
 
 # Docker containers
-PHP_CONT = $(DOCKER_COMP) exec -it www_site-maya bash
+PHP_CONT = $(DOCKER) exec -it www_site-maya bash
 
 # Executables
 PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
-SYMFONY  = $(PHP_CONT) ./bin/console
+SYMFONY  = $(PHP_CONT) bin/console
 
 # Misc
 .DEFAULT_GOAL = help

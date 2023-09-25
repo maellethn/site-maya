@@ -10,23 +10,27 @@ use App\Repository\CategorieRepository;
 use App\Entity\Categorie;
 use App\Repository\AcceuilRepository;
 use App\Entity\Acceuil;
-
-use \Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\Validator\Constraints\Length;
 
 class SiteController extends AbstractController
 {
     /**
      * @Route("/", name="site")
      */
-    public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
+    public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
 
-        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
+        $categories=$catRepo->findAll();
         if(count($categories)>0)
             $index=random_int(0, count($categories)-1);
         else 
             $index=0;
         $collection=$categories[$index];
+        $puzzle=$acceuilRepo->find(1)->getPuzzleCollection();
+        for ($i=0; $i < count($categories); $i++) { 
+            if ($categories[$i]->getId() == $puzzle->getId())
+                unset($categories[$i]);
+        }
         $acceuil = $acceuilRepo->find(1);
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
@@ -38,11 +42,10 @@ class SiteController extends AbstractController
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie, CacheManager $cacheManager): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie): Response
     {
 
-        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
-
+        $categories=$catRepo->findAll();
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
             
@@ -60,9 +63,9 @@ class SiteController extends AbstractController
     /**
      * @Route("/puzzle", name="puzzle")
      */
-    public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo, CacheManager $cacheManager): Response
+    public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-        $categories=$catRepo->findBy(['public'=>true],['Titre'=>'ASC']);
+         $categories=$catRepo ? $catRepo->findAll() : [];
         return $this->render('site/puzzle.html.twig', [
             'categories' => $categories,
             'collection' => $acceuil = $acceuilRepo->find(1)->getPuzzleCollection(),

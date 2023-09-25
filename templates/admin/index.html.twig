@@ -11,8 +11,13 @@
     {% if acceuil is not null %}
         {{acceuil.texte|raw}}
     </div>
+    
+    {% if acceuil.image %}
     <h2> L'image associée :</h2>
     <img src="{{asset(acceuil.image)|imagine_filter('carre')}}" alt="image de présentation">
+    {% endif %}
+    
+    
     {% endif %}
 <div class="card-body">
 	{{ form_start(form)}}

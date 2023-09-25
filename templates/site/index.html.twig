@@ -19,10 +19,10 @@
 </div>
 <div class="container-lg">
 	<!-- Lettre -->
-	{% if acceuil is not null %}
+	{% if acceuil.image is not null %}
 		<div class="img_presentation"><img src="{{acceuil.image| imagine_filter('carre')}}" width="250" height="250" alt="lettre point contemporain"></div>
 	{% endif %}
-	{% if acceuil is not null %}
+	{% if acceuil.texte is not null %}
 	<div class="texte_presentation"> {{acceuil.texte|raw}}</div>
 	{% endif %}
 	<div class="clear"></div>
