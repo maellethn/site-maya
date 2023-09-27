@@ -10,6 +10,7 @@ use App\Repository\CategorieRepository;
 use App\Entity\Categorie;
 use App\Repository\AcceuilRepository;
 use App\Entity\Acceuil;
+use App\Services\WeatherApi;
 use Symfony\Component\Validator\Constraints\Length;
 
 class SiteController extends AbstractController
@@ -19,7 +20,6 @@ class SiteController extends AbstractController
      */
     public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-
         $categories=$catRepo->findAll();
         if(count($categories)>0)
             $index=random_int(0, count($categories)-1);
@@ -35,14 +35,15 @@ class SiteController extends AbstractController
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
             'categories' => $categories,
-            'randomCollection'=>$collection
+            'randomCollection'=>$collection,
+            
         ]);
     }
 
     /**
      * @Route("/collection/{id}", name="collection")
      */
-    public function collection(CategorieRepository $catRepo, Categorie $categorie, AcceuilRepository $acceuilRepo): Response
+    public function collection(CategorieRepository $catRepo, Categorie $categorie, AcceuilRepository $acceuilRepo, WeatherApi $api): Response
     {
 
         
@@ -63,6 +64,7 @@ class SiteController extends AbstractController
              'categories' => $categories,
              'collection' => $categorie,
              'slider'=>$slider,
+             'weather'=>$api->getWeather(),
         ]);
     }
 
