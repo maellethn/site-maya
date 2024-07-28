@@ -3,7 +3,7 @@
 {% block stylesheets %}
 	<link href="{{asset('asset/css/nivo-lightbox.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('asset/css/themes/default/default.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('asset/css/rain.css')}}" rel="stylesheet" type="text/css">
+	{# <link href="{{asset('asset/css/rain.css')}}" rel="stylesheet" type="text/css"> #}
 {% endblock %}
 
 {% block title %}
@@ -13,11 +13,11 @@
 
 {% block body %}
 <div class="{{weather.weather.0.main == "Rain" ? 'back-row-toggle splat-toggle' : ''}} ">
-	{% if weather.weather.0.main == "Rain" %}
+	{# if weather.weather.0.main == "Rain" %}
 		<div class="rain front-row"></div>
 		<div class="rain back-row"></div>
-	{% endif %}
-  <div class="banniere" style="background: linear-gradient(to bottom,{{collection.Couleur ? collection.Couleur.hexa : 'white' }}, #111119);">
+	{% endif #}
+  <div class="banniere" style="background-color: {{collection.Couleur ? collection.Couleur.hexa : 'white' }};">
 		<h1 class="title">
 			{{collection.Titre}}
 		</h1>

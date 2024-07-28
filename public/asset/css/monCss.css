@@ -214,3 +214,8 @@ a:hover {
 			background-color: #ccc;
 			border: 1px solid #000;
 		}
+		.text_acceuil img,
+iframe img,
+.texte_presentation img {
+  max-width: 100%;
+}
