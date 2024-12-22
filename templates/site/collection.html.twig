@@ -2,8 +2,7 @@
 
 {% block stylesheets %}
 	<link href="{{asset('asset/css/nivo-lightbox.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('asset/css/themes/default/default.css')}}" rel="stylesheet" type="text/css">
-	{# <link href="{{asset('asset/css/rain.css')}}" rel="stylesheet" type="text/css"> #}
+	<link href="{{asset('asset/css/maya/site/collection.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
@@ -13,10 +12,6 @@
 
 {% block body %}
 <div class="{{weather.weather.0.main == "Rain" ? 'back-row-toggle splat-toggle' : ''}} ">
-	{# if weather.weather.0.main == "Rain" %}
-		<div class="rain front-row"></div>
-		<div class="rain back-row"></div>
-	{% endif #}
   <div class="banniere" style="background-color: {{collection.Couleur ? collection.Couleur.hexa : 'white' }};">
 		<h1 class="title">
 			{{collection.Titre}}
@@ -56,8 +51,8 @@
 						</a>
 					{% else %}
 						<a href="{{asset(oeuvre.Lien)}}" title="{{oeuvre.Titre}}">
-						{% set lien = oeuvre.Lien|last() == 'p' ? oeuvre.Lien|slice(0,-5)|imagine_filter('collection') :oeuvre.Lien|imagine_filter('collection') %}
-							<img src="{{asset(lien)}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
+						{% set lien = oeuvre.Lien|last() == 'p' ? oeuvre.Lien|slice(0,-5)|imagine_filter('maxWidth') :oeuvre.Lien|imagine_filter('maxWidth') %}
+							<img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
 
 						</a>
 

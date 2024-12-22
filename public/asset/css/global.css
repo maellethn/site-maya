@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'GFS Didot', serif;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+#navbarToggleExternalContent {
+    width: 100%;
+    backdrop-filter: grayscale(0) contrast(0%) blur(5px);
+    border-radius: 5px;
+}
+
+.p-4 {
+    color: #067BC2;
+}
+
+.brand {
+    color: white;
+    margin: 0 0 10% 0;
+}
+
+.brand .title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.brand img {
+    top: 0;
+    position: absolute;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    z-index: -1;
+}
+
+.text {
+    padding-top: 30%;
+}
+
+.random {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    font-weight: 700;
+    margin: 15% auto 0 auto;
+    background-color: #067BC2;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    border: solid 1px #067BC2;
+    text-decoration: none;
+}
+
+.random i {
+    margin-right: 1rem;
+}
+
+
+.random:hover {
+    color: #067BC2;
+    background-color: transparent;
+}
+
+.fa-random {
+    margin-right: 1rem;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-toggler {
+    color: #067BC2;
+    border-color: #067BC2;
+    font-size: 2rem;
+}
+
+
+footer {
+    margin-top: 1.5rem;
+    padding: 2rem;
+    background-color: #067BC2;
+    color: white;
+    min-height: 5rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+footer i {
+    font-size: 3rem;
+    margin-right: 1rem;
+}
+
+.contact,
+.socials {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+}
+
+.contact a,
+.socials a {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+}
+
+footer .contact i {
+    font-size: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: #067BC2;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #067BC2;
+}
