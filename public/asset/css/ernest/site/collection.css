@@ -54,3 +54,10 @@
         width: 100%;
     }
 }
+
+.nivo-lightbox-title-wrap {
+    backdrop-filter: grayscale(0) contrast(60%) blur(10px);
+}
+.nivo-lightbox-overlay {
+    backdrop-filter: grayscale(0) contrast(80%) blur(5px);
+}

@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-<link href="{{asset('asset/css/maya/site/puzzle.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('asset/css/ernest/site/puzzle.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
 	Ernest Thinon Puzzle
+{% endblock %}
+
+{% block header %}
+	{% include 'partials/site-menu.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -42,7 +46,7 @@
 				if(!targ.style.left) { targ.style.left='0px'};
 				if (!targ.style.top) { targ.style.top='0px'};
 
-				// calculate integer values for top and left 
+				// calculate integer values for top and left
 				// properties
 				coordX = parseInt(targ.style.left);
 				coordY = parseInt(targ.style.top);
@@ -51,7 +55,7 @@
 				// move div element
 					document.onmousemove=dragDiv;
                 return false;
-				
+
 			}
 			function dragDiv(e) {
 				if (!drag) {return};

@@ -3,33 +3,32 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-{% include 'admin/adminNav.html.twig' %}
-
-<div class="example-wrapper">
-    <h2>Le texte de présentation :</h2>
-    <div class="text_acceuil">
-    {% if acceuil is not null %}
-        {{acceuil.texte|raw}}
+    {% include 'admin/adminNav.html.twig' %}
+    <div class="homepage-form card">
+        <div class="card-body">
+            {{ form_start(form) }}
+            {{ form_row(form.texte,{'label':'Texte de présentation'}) }}
+            {{ form_row(form.Oeuvre,{'label':'Lien vers l\'image'}) }}
+            {{ form_row(form.puzzle_collection,{'label':'Collection pour le puzzle'}) }}
+            {{ form_row(form.mainCollection) }}
+            <button class="btn btn-primary" type="submit">Modifier</button>
+            {{ form_end(form) }}
+        </div>
     </div>
-
-    {% if acceuil.image %}
-    <h2> L'image associée :</h2>
-    <img src="{{asset(acceuil.image)|imagine_filter('carre')}}" alt="image de présentation">
-    {% endif %}
-    
-    
-    {% endif %}
-<div class="card-body">
-	{{ form_start(form)}}
-	{{ form_row(form.texte,{'label':'Texte de présentation'}) }}
-	{{ form_row(form.Oeuvre,{'label':'Lien vers l\'image'})}}
-    {{ form_row(form.puzzle_collection,{'label':'Collection pour le puzzle'})}}
-	<button class="btn btn-primary" type="submit">Modifier</button>
-	{{form_end(form)}}
-</div>
-
-
-
-</div>
+    <section class="preview">
+        <h2 class="preview-title">
+            Prévisualisation
+        </h2>
+        <h2>Le texte de présentation :</h2>
+        {% if acceuil is not null %}
+            <div class="text_acceuil">
+                {{ acceuil.texte|raw }}
+            </div>
+        {% endif %}
+        {% if acceuil.image %}
+            <h2> L'image associée :</h2>
+            <img src="{{ asset(acceuil.image)|imagine_filter('carre') }}" alt="image de présentation">
+        {% endif %}
+    </section>
 {% endblock %}
 {% block javascripts %}{% include 'admin/adminJavascript.html.twig' %}{% endblock %}

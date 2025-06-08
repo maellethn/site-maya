@@ -37,6 +37,11 @@ class Acceuil
      */
     private $puzzle_collection;
 
+    /**
+     * @ORM\OneToOne(targetEntity=categorie::class, cascade={"persist", "remove"}, nullable=true)
+     */
+    private $mainCollection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Acceuil
     public function setPuzzleCollection(?Categorie $puzzle_collection): self
     {
         $this->puzzle_collection = $puzzle_collection;
+
+        return $this;
+    }
+
+    public function getMainCollection(): ?categorie
+    {
+        return $this->mainCollection;
+    }
+
+    public function setMainCollection(?categorie $mainCollection): self
+    {
+        $this->mainCollection = $mainCollection;
 
         return $this;
     }

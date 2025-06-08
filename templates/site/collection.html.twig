@@ -2,12 +2,15 @@
 
 {% block stylesheets %}
 	<link href="{{asset('asset/css/nivo-lightbox.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('asset/css/maya/site/collection.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{asset('asset/css/ernest/site/collection.css')}}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block title %}
-	Ernest Thinon
-	{{collection.Titre}}
+	Ernest Thinon {{collection.Titre}}
+{% endblock %}
+
+{% block header %}
+	{% include 'partials/site-menu.html.twig' %}
 {% endblock %}
 
 {% block body %}
@@ -44,7 +47,7 @@
 
 			{% for oeuvre in collection.Oeuvre %}
 				<div class="card">
-				
+
 					{% if oeuvre.lien|slice(-3) == 'pdf' %}
 						<a href="{{asset(oeuvre.lien)}}" target="_blank">
 						<img src="{{asset('asset/img/pdf-icon.png')}}" class="card-img-top" alt="{{oeuvre.Description}}">
@@ -66,7 +69,7 @@
 		</div>
 	</div>
 </div>
-	
+
 {% endblock %}
 {% block javascripts %}
 	<script src="{{asset('asset/js/categorie.js')}}"></script>

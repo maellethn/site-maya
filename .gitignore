@@ -22,4 +22,5 @@
 ###< phpunit/phpunit ###
 
 /.vscode
+/.idea/*
 /db

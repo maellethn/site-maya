@@ -129,11 +129,11 @@ class AdminController extends AbstractController
     	$form->handleRequest($req);
 
     	$path=$this->getParameter('kernel.project_dir').'/public/images';
-    
+
     	if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $file */
     		$file=$form->get('File')->getData();
-            
+
     		$name=md5(uniqid()).'.'.$file->guessExtension();
             if ($file->guessExtension() == 'pdf'){
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);

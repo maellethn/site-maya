@@ -2,7 +2,7 @@ version: "3.3"
 services:
   db:
     image: mysql
-    container_name: db_site-maya
+    container_name: db_site-ernest
     restart: always
     volumes:
       - db-data:/var/lib/mysql
@@ -30,7 +30,7 @@ services:
 
   www:
     build: php
-    container_name: www_site-maya
+    container_name: www_site-ernest
     ports:
       - "8741:80"
     volumes:

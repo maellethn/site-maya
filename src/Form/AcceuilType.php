@@ -20,7 +20,7 @@ class AcceuilType extends AbstractType
     {
         $builder
             ->add('texte', CKEditorType::class, [
-            
+
                 'row_attr' => ['class' => 'input-group mb-3'],
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'input-group-text'],
@@ -37,6 +37,12 @@ class AcceuilType extends AbstractType
                 'row_attr' =>['class'=>'input-group mb-3'],
                 'attr'=> ['class' => 'form-select'],
                 'label_attr' => ['class' => 'input-group-text']
+                ])
+            ->add('mainCollection', null, [
+                'row_attr' =>['class'=>'input-group mb-3'],
+                'attr'=> ['class' => 'form-select'],
+                'label_attr' => ['class' => 'input-group-text'],
+                'label'=>'Collection mise en avant en page d\'acceuil'
                 ])
         ;
     }

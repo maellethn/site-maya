@@ -12,81 +12,53 @@ body {
 
 header {
     position: fixed;
+    top: 0;
     width: 100%;
     z-index: 1;
-}
-
-#navbarToggleExternalContent {
-    width: 100%;
-    backdrop-filter: grayscale(0) contrast(0%) blur(5px);
-    border-radius: 5px;
 }
 
 .p-4 {
     color: #067BC2;
 }
 
-.brand {
-    color: white;
-    margin: 0 0 10% 0;
-}
 
-.brand .title {
-    font-size: 2rem;
-    text-align: center;
-}
-
-.brand img {
-    top: 0;
-    position: absolute;
-    max-width: 100%;
-    margin-bottom: 2rem;
-    z-index: -1;
-}
-
-.text {
-    padding-top: 30%;
-}
-
-.random {
-    display: flex;
-    align-items: center;
-    max-width: fit-content;
-    font-weight: 700;
-    margin: 15% auto 0 auto;
-    background-color: #067BC2;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 1rem;
-    border: solid 1px #067BC2;
-    text-decoration: none;
-}
-
-.random i {
-    margin-right: 1rem;
-}
-
-
-.random:hover {
-    color: #067BC2;
-    background-color: transparent;
-}
-
-.fa-random {
-    margin-right: 1rem;
-}
-
-a:hover {
+a,
+a:hover,
+a:active {
     color: black;
     text-decoration: none;
 }
 
-.navbar-toggler {
-    color: #067BC2;
-    border-color: #067BC2;
-    font-size: 2rem;
+ul {
+    list-style: none;
 }
 
+/* Menu */
+.main-menu {
+    backdrop-filter: blur(40px);
+    font-size: 1.5rem;
+}
+
+.main-menu ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-menu li {
+    padding: 0.5rem 3rem;
+}
+
+.main-menu .parent-link:hover .sub-menu,
+.main-menu .parent-link:active .sub-menu {
+    max-height: 1000px;
+}
+.main-menu .sub-menu {
+    transition:max-height 0.5s ease-in-out;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.2rem;
+}
 
 footer {
     margin-top: 1.5rem;
@@ -102,7 +74,8 @@ footer a {
     color: white;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:active {
     color: white;
     transform: scale(1.2);
 }
@@ -142,7 +115,8 @@ a {
     color: #067BC2;
 }
 
-a:hover {
+a:hover,
+a:active {
     text-decoration: none;
     color: #067BC2;
 }

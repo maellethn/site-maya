@@ -2,6 +2,14 @@
 
 {% block title %}Connexion{% endblock %}
 
+{% block stylesheets %}
+	<link href="{{asset('asset/css/ernest/registration/connexion.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+	{% include 'partials/site-menu.html.twig' %}
+{% endblock %}
+
 {% block body %}
 <div class="card shadow mb-4 form-xs">
 	<div class="card-header py-3">
@@ -23,5 +31,5 @@
 	</form>
 	</div>
 </div>
-	
+
 {% endblock %}

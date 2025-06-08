@@ -1,0 +1,21 @@
+{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+<nav class="main-menu" role="navigation">
+    <ul>
+        <li>
+            <a href="{{ path('site') }}">Acceuil</a>
+        </li>
+        <li class="parent-link">
+            <span>Catégories</span>
+            {% if categories is defined %}
+                <ul class="sub-menu">
+                    {% for categorie in categories %}
+                        <li>
+                            <a href="{{ path('collection',{id:categorie.id}) }}">{{ categorie.Titre }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
