@@ -178,9 +178,6 @@
     "symfony/asset": {
         "version": "v5.2.1"
     },
-    "symfony/browser-kit": {
-        "version": "v5.2.1"
-    },
     "symfony/cache": {
         "version": "v5.2.1"
     },
@@ -201,9 +198,6 @@
         "files": [
             "./bin/console"
         ]
-    },
-    "symfony/css-selector": {
-        "version": "v5.2.1"
     },
     "symfony/debug-bundle": {
         "version": "4.1",
@@ -227,9 +221,6 @@
         "version": "v2.2.0"
     },
     "symfony/doctrine-bridge": {
-        "version": "v5.2.1"
-    },
-    "symfony/dom-crawler": {
         "version": "v5.2.1"
     },
     "symfony/dotenv": {
@@ -364,18 +355,18 @@
         "version": "v2.1.0"
     },
     "symfony/phpunit-bridge": {
-        "version": "4.3",
+        "version": "7.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.3",
-            "ref": "6d0e35f749d5f4bfe1f011762875275cd3f9874f"
+            "branch": "main",
+            "version": "5.1",
+            "ref": "2f91477d6efaed3fb857db87480f7d07d31cbb3e"
         },
         "files": [
-            "./.env.test",
-            "./bin/phpunit",
-            "./phpunit.xml.dist",
-            "./tests/bootstrap.php"
+            ".env.test",
+            "bin/phpunit",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
         ]
     },
     "symfony/polyfill-intl-grapheme": {

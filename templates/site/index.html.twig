@@ -3,40 +3,41 @@
 {% block title %} Ernest Thinon site portfolio {% endblock %}
 
 {% block stylesheets %}
-<link href="{{asset('asset/css/ernest/site/acceuil.css')}}" rel="stylesheet">
+    <link href="{{ asset('asset/css/ernest/site/acceuil.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block header %}
-	{% include 'partials/site-menu.html.twig' %}
+    {% include 'partials/site-menu.html.twig' %}
 {% endblock %}
 
 
 {% block body %}
-<div class="brand" style="background:no-repeat center top / cover url('{{ asset('asset/img/5_1.jpg.webp')}}')">
-	<div class="text">
-		<h1 class="title">Ernest THINON</h1>
+    <div class="brand" style="background:no-repeat center top / cover url('{{ asset('asset/img/5_1.jpg.webp') }}')">
+        <div class="text">
+            <h1 class="title">Ernest THINON</h1>
+        </div>
+    </div>
+    <div class="container-lg">
+        <section class="main_links">
+            <a href="{{ path('collection',{ id: (acceuil.mainCollection ? acceuil.mainCollection.id : randomCollection.id)}) }}"><i
+                        class="fa-solid fa-palette"></i><span>Collection à la une</span></a>
+            <a href="{{ path('puzzle') }}"><i class="fa-solid fa-puzzle-piece"></i><span>Puzzle</span></a>
+            <a href="/"><i class="fa-solid fa-hands-clapping"></i><span>A propos de moi</span></a>
+        </section>
+        <!-- Lettre -->
+        {% if acceuil.image is not null %}
+            <div class="img_presentation">
+                <img src="{{ acceuil.image| imagine_filter('carre') }}" width="250" height="250" alt="lettre point contemporain">
+            </div>
+        {% endif %}
+        {% if acceuil.texte is not null %}
+            <div class="texte_presentation">{{ acceuil.texte|raw }}</div>
+        {% endif %}
+        <div class="clear"></div>
+        <section class="actualities">
 
-	</div>
-
-</div>
-<div class="container-lg">
-	<section class="main_links">
-		<a href="{{path('collection',{id:randomCollection.id})}}"><i class="fa-solid fa-palette"></i><span>Collection à la une</span></a>
-		<a href="{{path('puzzle')}}"><i class="fa-solid fa-puzzle-piece"></i><span>Puzzle</span></a>
-		<a href="/"><i class="fa-solid fa-hands-clapping"></i><span>A propos de moi</span></a>
-	</section>
-	<!-- Lettre -->
-	{% if acceuil.image is not null %}
-		<div class="img_presentation"><img src="{{acceuil.image| imagine_filter('carre')}}" width="250" height="250" alt="lettre point contemporain"></div>
-	{% endif %}
-	{% if acceuil.texte is not null %}
-	<div class="texte_presentation">{{acceuil.texte|raw}}</div>
-	{% endif %}
-	<div class="clear"></div>
-	<section class="actualities">
-
-	</section>
-</div>
+        </section>
+    </div>
 
 
 {% endblock %}
