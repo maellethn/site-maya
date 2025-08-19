@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="{{weather.weather.0.main == "Rain" ? 'back-row-toggle splat-toggle' : ''}} ">
+<div class="back-row-toggle splat-toggle ">
   <div class="banniere" style="background-color: {{collection.Couleur ? collection.Couleur.hexa : 'white' }};">
 		<h1 class="title">
 			{{collection.Titre}}
@@ -44,7 +44,6 @@
 			</div>
 		{% endif %}
 		<div class="grid" id="gallery" data-toggle="modal" data-target="#exampleModal">
-
 			{% for oeuvre in collection.Oeuvre %}
 				<div class="card">
 
@@ -56,7 +55,6 @@
 						<a href="{{asset(oeuvre.Lien)}}" title="{{oeuvre.Titre}}">
 						{% set lien = oeuvre.Lien|last() == 'p' ? oeuvre.Lien|slice(0,-5)|imagine_filter('maxWidth') :oeuvre.Lien|imagine_filter('maxWidth') %}
 							<img src="{{asset(oeuvre.Lien)}}" class="card-img-top" alt="{{oeuvre.Description}}" onclick="onClick(this)" class="modal-hover-opacity">
-
 						</a>
 
 					{% endif %}
@@ -74,7 +72,6 @@
 {% block javascripts %}
 	<script src="{{asset('asset/js/categorie.js')}}"></script>
 	<script src="{{asset('asset/js/nivo-lightbox.js')}}"></script>
-	<script src="{{asset('asset/js/rain.js')}}"></script>
 	<script>
 		$(document).ready(function(){
 			$('a').nivoLightbox({

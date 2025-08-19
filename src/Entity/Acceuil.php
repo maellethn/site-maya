@@ -38,7 +38,7 @@ class Acceuil
     private $puzzle_collection;
 
     /**
-     * @ORM\OneToOne(targetEntity=categorie::class, cascade={"persist", "remove"}, nullable=true)
+     * @ORM\OneToOne(targetEntity=categorie::class, cascade={"persist", "remove"})
      */
     private $mainCollection;
 

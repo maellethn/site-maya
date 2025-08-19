@@ -28,7 +28,6 @@ use App\Form\OeuvreType;
 use App\Entity\Acceuil;
 use App\Repository\AcceuilRepository;
 use App\Form\AcceuilType;
-use App\Services\WeatherApi;
 
 /**
  * @Route("/admin")
@@ -41,7 +40,6 @@ class AdminController extends AbstractController
      */
     public function index(AcceuilRepository $acceuilRepo, Request $req, EntityManagerInterface $manager): Response
     {
-        $infos=WeatherApi::getLocation();
         $acceuil=$acceuilRepo->find(1);
 
         $form = $this->createForm(AcceuilType::class, $acceuil);
@@ -61,7 +59,6 @@ class AdminController extends AbstractController
         return $this->render('admin/index.html.twig', [
             'acceuil' => $acceuil,
             'form' => $form->createView(),
-            'info'=>$infos
         ]);
     }
 
