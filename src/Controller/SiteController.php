@@ -53,6 +53,7 @@ class SiteController extends AbstractController
                 }
             }
         $puzzle=$acceuilRepo->find(1)->getPuzzleCollection();
+
         for ($i=0; $i < count($categories); $i++) {
             if ($categories[$i]->getId() == $puzzle->getId())
                 unset($categories[$i]);

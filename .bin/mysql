@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker exec -it db_site-ernest mysql "$@"
+

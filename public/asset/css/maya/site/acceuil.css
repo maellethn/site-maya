@@ -1,0 +1,15 @@
+@media all and (min-width: 768px) {
+  .container-lg {
+    padding: 2rem 5rem;
+  }
+}
+
+.img_presentation {
+  float:right;
+}
+
+.text_acceuil img,
+iframe img,
+.texte_presentation img {
+  max-width: 100%;
+}
