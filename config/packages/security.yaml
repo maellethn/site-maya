@@ -1,5 +1,5 @@
 security:
-    encoders:
+    password_hashers:
         App\Entity\User:
             algorithm: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -14,7 +14,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
             lazy: true
             provider: in_database
             form_login:
@@ -35,4 +34,3 @@ security:
     #bloc admin acces for not admin users
     access_control:
         - { path: /admin, roles: ['ROLE_ADMIN'] }
-        

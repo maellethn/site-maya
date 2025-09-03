@@ -5,41 +5,28 @@ namespace App\Entity;
 use App\Repository\AcceuilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=AcceuilRepository::class)
- */
+
+#[ORM\Entity(repositoryClass:AcceuilRepository::class)]
 class Acceuil
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: 'text')]
     private $texte;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+    #[ORM\Column(type: 'string',length: 255,nullable: true)]
     private $image;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Oeuvre::class,cascade={"persist", "remove"})
-     */
+    #[ORM\OneToOne(targetEntity: Oeuvre::class,cascade: ["persist", "remove"])]
     private $Oeuvre;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
-     */
+    #[ORM\OneToOne(targetEntity: Categorie::class,cascade: ["persist", "remove"])]
     private $puzzle_collection;
 
-    /**
-     * @ORM\OneToOne(targetEntity=categorie::class, cascade={"persist", "remove"})
-     */
+    #[ORM\OneToOne(targetEntity: Categorie::class,cascade: ["persist", "remove"])]
     private $mainCollection;
 
     public function getId(): ?int
