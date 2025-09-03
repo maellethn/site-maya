@@ -15,12 +15,11 @@ use Symfony\Component\Validator\Constraints\Length;
 
 class SiteController extends AbstractController
 {
-    /**
-     * @Route("/", name="site")
-     */
+
+    #[Route('/', name: 'site')]
     public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-        $categories=$catRepo->findAll();
+        $categories=$catRepo->findBy([], ['id'=> 'DESC']);
         if(count($categories)>0)
             $index=random_int(0, count($categories)-1);
         else
@@ -40,9 +39,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/collection/{id}", name="collection")
-     */
+    #[Route('/collection/{id}', name: 'collection')]
     public function collection(CategorieRepository $catRepo, Categorie $categorie, AcceuilRepository $acceuilRepo): Response
     {
         $categories=$catRepo->findAll();
@@ -53,6 +50,7 @@ class SiteController extends AbstractController
                 }
             }
         $puzzle=$acceuilRepo->find(1)->getPuzzleCollection();
+
         for ($i=0; $i < count($categories); $i++) {
             if ($categories[$i]->getId() == $puzzle->getId())
                 unset($categories[$i]);
@@ -64,9 +62,7 @@ class SiteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/puzzle", name="puzzle")
-     */
+    #[Route('/puzzle', name: 'puzzle')]
     public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
          $categories=$catRepo ? $catRepo->findAll() : [];

@@ -29,15 +29,10 @@ use App\Entity\Acceuil;
 use App\Repository\AcceuilRepository;
 use App\Form\AcceuilType;
 
-/**
- * @Route("/admin")
- */
-
+#[Route('/admin')]
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/", name="admin")
-     */
+    #[Route('/', name: 'admin')]
     public function index(AcceuilRepository $acceuilRepo, Request $req, EntityManagerInterface $manager): Response
     {
         $acceuil=$acceuilRepo->find(1);
@@ -62,9 +57,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/categories", name="categories")
-     */
+    #[Route('/categories', name: 'categories')]
     public function Categories(CategorieRepository $catRepo)
     {
         $categories=$catRepo->findAll();
@@ -73,9 +66,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/couleurs", name="couleurs")
-     */
+    #[Route('/couleurs', name: 'couleurs')]
     public function Couleurs(CouleurRepository $couleurRepo)
     {
         $couleurs=$couleurRepo->findAll();
@@ -84,9 +75,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/oeuvres", name="oeuvres")
-     */
+    #[Route('/oeuvres', name: 'oeuvres')]
     public function Oeuvres(OeuvreRepository $oeuvreRepo)
     {
         $oeuvres=$oeuvreRepo->findAll();
@@ -95,9 +84,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/couleurs/ajout", name="ajoutCouleur",methods={"GET","POST"})
-     */
+    #[Route('/couleurs/ajout', name: 'ajoutCouleur')]
     public function AjoutCouleur(Request $req, EntityManagerInterface $manager)
     {
         $couleur= new Couleur;
@@ -116,9 +103,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/oeuvres/ajout", name="ajoutOeuvre",methods={"GET","POST"})
-     */
+    #[Route('/oeuvres/ajout', name: 'ajoutOeuvre')]
     public function AjoutOeuvre(Request $req, EntityManagerInterface $manager, SluggerInterface $slugger)
     {
         $oeuvre= new Oeuvre;
@@ -159,9 +144,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/categories/ajout", name="ajoutCategorie",methods={"GET","POST"})
-     */
+    #[Route('/categories/ajout', name: 'ajoutCategorie')]
     public function AjoutCategorie(Request $req, EntityManagerInterface $manager)
     {
         $categorie= new Categorie;
@@ -180,9 +163,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/categories/suppression/{id}", name="categories_suppression")
-     */
+    #[Route('/categories/suppression/{id}', name: 'categories_suppression')]
     public function SuppressionCategories(Categorie $categorie, EntityManagerInterface $manager)
     {
         $manager->remove($categorie);
@@ -190,9 +171,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('categories');
     }
 
-    /**
-     * @Route("/oeuvres/suppression/{id}", name="oeuvres_suppression")
-     */
+    #[Route('/oeuvres/suppression/{id}', name: 'oeuvres_suppression')]
     public function SuppressionOeuvres(Oeuvre $oeuvre, EntityManagerInterface $manager)
     {
         $path=$this->getParameter('kernel.project_dir').'/public/';
@@ -208,9 +187,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('oeuvres');
     }
 
-    /**
-     * @Route("/couleurs/suppression/{id}", name="couleurs_suppression")
-     */
+    #[Route('/couleurs/suppression/{id}', name: 'couleurs_suppression')]
     public function SuppressionCouleurs(Couleur $couleur, EntityManagerInterface $manager)
     {
         $manager->remove($couleur);
@@ -218,9 +195,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('couleurs');
     }
 
-    /**
-     * @Route("/categories/modification/{id}", name="modificationCategorie",methods={"GET","POST"})
-     */
+    #[Route('/categories/modification/{id}', name: 'modificationCategorie')]
     public function ModificationCategorie(Request $req, EntityManagerInterface $manager, Categorie $categorie)
     {
         $form= $this->createForm(CategorieType::class,$categorie);
@@ -239,9 +214,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/oeuvres/modification/{id}", name="modificationOeuvre",methods={"GET","POST"})
-     */
+    #[Route('/oeuvres/modification/{id}', name: 'modificationOeuvre')]
     public function ModificationOeuvre(Request $req, EntityManagerInterface $manager, Oeuvre $oeuvre)
     {
         $form= $this->createForm(OeuvreType::class,$oeuvre);
@@ -260,9 +233,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/couleurs/modification/{id}", name="modificationCouleur",methods={"GET","POST"})
-     */
+    #[Route('/couleurs/modification/{id}', name: 'modificationCouleur')]
     public function ModificationCouleur(Request $req, EntityManagerInterface $manager, Couleur $couleur)
     {
         $form= $this->createForm(CouleurType::class,$couleur);

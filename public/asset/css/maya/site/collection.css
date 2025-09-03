@@ -1,0 +1,63 @@
+.banniere {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+    color: white;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.carousel {
+    margin: 3rem 0;
+}
+
+.carousel-item img {
+    max-height: 30rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.collection .card {
+    margin: .1%;
+    width: 33%;
+    float: left;
+}
+
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.clear {
+    clear: both;
+}
+
+@media all and (max-width: 768px) {
+    .collection .card{
+        width: 49%;
+    }
+}
+
+@media all and (max-width: 425px) {
+    .collection .card{
+        width: 100%;
+    }
+}
+
+.nivo-lightbox-title-wrap {
+    backdrop-filter: grayscale(0) contrast(60%) blur(10px);
+}
+.nivo-lightbox-overlay {
+    backdrop-filter: grayscale(0) contrast(80%) blur(5px);
+}

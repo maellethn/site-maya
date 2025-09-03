@@ -6,43 +6,30 @@ use App\Repository\OeuvreRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-/**
- * @ORM\Entity(repositoryClass=OeuvreRepository::class)
- */
+#[ORM\Entity(repositoryClass:OeuvreRepository::class)]
 class Oeuvre
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string',length: 255)]
     private $Titre;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+    #[ORM\Column(type: 'text')]
     private $Description;
 
     private $File;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string',length: 255)]
     private $Lien;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="Oeuvre")
-     */
+
+    #[ORM\ManyToOne(targetEntity:Categorie::class, inversedBy:"Oeuvre")]
     private $categorie;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: 'boolean')]
     private $slider;
 
 

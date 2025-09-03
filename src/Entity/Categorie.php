@@ -6,38 +6,25 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Query\Expr;
 
-/**
- * @ORM\Entity(repositoryClass=CategorieRepository::class)
- */
+#[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type:'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type:'string',length: 255)]
     private $Titre;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Oeuvre::class, mappedBy="categorie",orphanRemoval=true)
-     */
+    #[ORM\OneToMany(targetEntity:Oeuvre::class, mappedBy:"categorie",orphanRemoval:true)]
     private $Oeuvre;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Couleur::class, inversedBy="categories")
-     */
+    #[ORM\ManyToOne(targetEntity:Couleur::class, inversedBy:"categories")]
     private $Couleur;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type:'boolean')]
     private $public;
 
     public function __construct()

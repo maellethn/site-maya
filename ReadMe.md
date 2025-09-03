@@ -3,8 +3,10 @@
 # Initialisation et instalation
 Lancement des container docker 
 `make up`
-`composer install`
-`php bin/console doctrine:database:create`
+
+Build du symphony
+``.bin/composer install``
+``.bin/php bin/console doctrine:database:create``
 
 ## Comandes utiles
 
