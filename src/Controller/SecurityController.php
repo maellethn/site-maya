@@ -18,19 +18,16 @@ use App\Repository\RolesRepository;
 
 class SecurityController extends AbstractController
 {
-    /**
-     * @Route("/acceuil", name="acceuil")
-     */
+    #[Route('/acceuil', name: 'acceuil')]
     public function acceuil()
     {
 
         return $this->render('site/acceuil.html.twig', [
-             
+
         ]);
     }
-    /**
-     * @Route("/login", name="security_registration")
-     */
+
+    #[Route('/login', name: 'security_registration')]
     public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, RolesRepository $roleRepo)
     {
     	$user=new User();
@@ -51,19 +48,17 @@ class SecurityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/connexion", name="security_login")
-     */
+
+    #[Route('/connexion', name: 'security_login')]
     public function login()
     {
     	//dd($this->getUser());
         return $this->render('security/login.html.twig', [
-            
+
         ]);
     }
-    /**
-     * @Route("/deconnexion", name="security_logout")
-     */
+
+    #[Route('/deconnexion', name: 'security_logout')]
     public function logout()
     {
     }

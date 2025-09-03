@@ -10,54 +10,40 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(
- *  fields={"email"},
- *  message="L'email que vous avez indiquer est déja utilisé "
- * )
- */
+
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(
+    fields: ["email"],
+    message: "L'email que vous avez indiquer est déja utilisé "
+)]
 class User implements UserInterface
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Email()
-     *
-     */
+
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\Email()]
     private $email;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string", length: 255)]
     private $username;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Assert\Length(min="6",minMessage="votre mot de passe doit faire au moins 6 caracteres")
-     */
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\Length(min: "6", minMessage: "votre mot de passe doit faire au moins 6 caracteres")]
     private $password;
 
-    /**
-    *@Assert\EqualTo(propertyPath="password", message="vous n'avez pas tapez le même mot de passe")
-    */
+
+    #[Assert\EqualTo(propertyPath:"password", message:"vous n'avez pas tapez le même mot de passe")]
     public $confirm_password;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Roles::class, inversedBy="users")
-     */
+
+    #[ORM\ManyToMany(targetEntity:Roles::class, inversedBy:"users")]
     private $Roles;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="users")
-     */
+    #[ORM\ManyToMany(targetEntity:Categorie::class, inversedBy:"users")]
     private $categories;
 
     public function __construct()
@@ -66,7 +52,6 @@ class User implements UserInterface
         $this->categories = new ArrayCollection();
     }
 
-    
 
     public function getId(): ?int
     {
@@ -108,10 +93,16 @@ class User implements UserInterface
 
         return $this;
     }
-    public function eraseCredentials(){
+
+    public function eraseCredentials(): void
+    {
 
     }
-    public function getSalt(){}
+
+    public function getSalt()
+    {
+    }
+
     /**
      * @return Collection|Roles[]
      */
@@ -120,13 +111,14 @@ class User implements UserInterface
         return $this->Roles;
     }
 
-   
-    public function getRoles(){
+
+    public function getRoles(): array
+    {
         foreach ($this->Roles as $role) {
-            $roles[]=$role->getTitre();
+            $roles[] = $role->getTitre();
         }
-        
-         return $roles;
+
+        return $roles;
     }
 
     public function addRole(Roles $role): self
@@ -171,5 +163,10 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->id;
     }
 }
