@@ -19,7 +19,7 @@ class SiteController extends AbstractController
     #[Route('/', name: 'site')]
     public function acceuil(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-        $categories=$catRepo->findAll();
+        $categories=$catRepo->findBy([], ['id'=> 'DESC']);
         if(count($categories)>0)
             $index=random_int(0, count($categories)-1);
         else
