@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Site;
 
+use App\Entity\Categorie;
+use App\Repository\AcceuilRepository;
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use App\Repository\CategorieRepository;
-use App\Entity\Categorie;
-use App\Repository\AcceuilRepository;
-use App\Entity\Acceuil;
-use App\Services\WeatherApi;
-use Symfony\Component\Validator\Constraints\Length;
 
 class SiteController extends AbstractController
 {
@@ -42,7 +38,7 @@ class SiteController extends AbstractController
     #[Route('/collection/{id}', name: 'collection')]
     public function collection(CategorieRepository $catRepo, Categorie $categorie, AcceuilRepository $acceuilRepo): Response
     {
-        $categories=$catRepo->findAll();
+        $categories=$catRepo->findBy([], ['id'=> 'DESC']);
         $slider=[];
             foreach ($categorie->getOeuvre() as $oeuvre) {
                 if ($oeuvre->getSlider()) {
@@ -65,10 +61,10 @@ class SiteController extends AbstractController
     #[Route('/puzzle', name: 'puzzle')]
     public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-         $categories=$catRepo ? $catRepo->findAll() : [];
+        $categories=$catRepo->findBy([], ['id'=> 'DESC']);
         return $this->render('site/puzzle.html.twig', [
             'categories' => $categories,
-            'collection' => $acceuil = $acceuilRepo->find(1)->getPuzzleCollection(),
+            'collection' => $acceuilRepo->find(1)->getPuzzleCollection(),
         ]);
     }
 }

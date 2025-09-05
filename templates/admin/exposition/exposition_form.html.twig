@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {% include 'admin/adminNav.html.twig' %}
+    <div class="container-lg">
+        <div class="card shadow mb-4 form-xs">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">{{ title }}</h6>
+            </div>
+            <div class="card-body">
+                {{ form_start(form)}}
+                {{ form_row(form.title)}}
+                {{ form_row(form.subTitle)}}
+                <ul class="works"
+                    data-index="{{ form.works|length > 0 ? form.works|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(form.works.vars.prototype)|e('html_attr') }}"
+                ></ul>
+                <button type="button" class="add_item_link btn btn-secondary" data-collection-holder-class="works">Ajouter une oeuvre</button>
+                <div class="save">
+                    <button class="btn btn-primary" type="submit">Sauvegarder</button>
+                </div>
+                {{form_end(form,{render_rest: false})}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {% include 'admin/adminJavascript.html.twig' %}
+    <script>
+        document
+            .querySelectorAll('ul.works li')
+            .forEach((work) => {
+                addWorkFormDeleteLink(work)
+            })
+        document
+            .querySelectorAll('.add_item_link')
+            .forEach(btn => {
+                btn.addEventListener("click", addFormToCollection)
+            });
+        function addFormToCollection(e) {
+            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+            const item = document.createElement('li');
+
+            item.innerHTML = collectionHolder
+                .dataset
+                .prototype
+                .replace(
+                    /__name__/g,
+                    collectionHolder.dataset.index
+                );
+
+            collectionHolder.appendChild(item);
+
+            collectionHolder.dataset.index++;
+            addWorkFormDeleteLink(item);
+        };
+
+        function addWorkFormDeleteLink(item) {
+            const removeFormButton = document.createElement('button');
+            removeFormButton.innerText = 'Supprimer';
+            removeFormButton.className = 'btn btn-warning'
+
+            item.append(removeFormButton);
+
+            removeFormButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                item.remove();
+            });
+        }
+    </script>
+{% endblock %}
+

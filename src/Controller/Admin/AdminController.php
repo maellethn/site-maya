@@ -1,33 +1,25 @@
 <?php
 
-namespace App\Controller;
-
-use WebPConvert\WebPConvert;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-
-use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
-use App\Repository\CategorieRepository;
-use App\Form\CategorieType;
-
 use App\Entity\Couleur;
-use App\Repository\CouleurRepository;
-use App\Form\CouleurType;
-
 use App\Entity\Oeuvre;
-use App\Repository\OeuvreRepository;
-use App\Form\OeuvreType;
-
-use App\Entity\Acceuil;
-use App\Repository\AcceuilRepository;
 use App\Form\AcceuilType;
+use App\Form\CategorieType;
+use App\Form\CouleurType;
+use App\Form\OeuvreType;
+use App\Repository\AcceuilRepository;
+use App\Repository\CategorieRepository;
+use App\Repository\CouleurRepository;
+use App\Repository\OeuvreRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
