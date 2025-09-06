@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ExpositionWorkRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[ORM\Entity(repositoryClass: ExpositionWorkRepository::class)]
 class ExpositionWork
@@ -30,6 +31,11 @@ class ExpositionWork
 
     #[ORM\ManyToOne(inversedBy: 'works')]
     private ?Exposition $exposition = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $fileLink = null;
+
+    private ?UploadedFile $file = null;
 
     public function getId(): ?int
     {
@@ -106,5 +112,27 @@ class ExpositionWork
         $this->exposition = $exposition;
 
         return $this;
+    }
+
+    public function getFileLink(): ?string
+    {
+        return $this->fileLink;
+    }
+
+    public function setFileLink(string $fileLink): static
+    {
+        $this->fileLink = $fileLink;
+
+        return $this;
+    }
+
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
+    }
+
+    public function setFile(?UploadedFile $file): void
+    {
+        $this->file = $file;
     }
 }

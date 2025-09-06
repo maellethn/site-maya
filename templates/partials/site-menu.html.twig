@@ -6,7 +6,7 @@
             <a href="{{ path('site') }}">Acceuil</a>
         </li>
         <li class="parent-link">
-            <span>Catégories</span>
+            <span>Projets</span>
             {% if categories is defined %}
                 <ul class="sub-menu">
                     {% for categorie in categories %}
@@ -16,6 +16,9 @@
                     {% endfor %}
                 </ul>
             {% endif %}
+        </li>
+        <li>
+            <a href=""><span>Expositions</span></a>
         </li>
     </ul>
 </nav>

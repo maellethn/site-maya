@@ -18,13 +18,13 @@ class Exposition
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type:'text', nullable: true)]
     private ?string $subTitle = null;
 
     /**
      * @var Collection<int, ExpositionWork>
      */
-    #[ORM\OneToMany(mappedBy: 'exposition', targetEntity: ExpositionWork::class)]
+    #[ORM\OneToMany(mappedBy: 'exposition', targetEntity: ExpositionWork::class, cascade: ['persist'])]
     private Collection $works;
 
     public function __construct()
@@ -67,6 +67,12 @@ class Exposition
     public function getWorks(): Collection
     {
         return $this->works;
+    }
+
+    public function setWorks(Collection $works): void
+    {
+        foreach ($this->works as $work)
+            $this->addWork($work);
     }
 
     public function addWork(expositionWork $work): static

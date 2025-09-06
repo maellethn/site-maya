@@ -17,11 +17,19 @@
                 <ul class="works"
                     data-index="{{ form.works|length > 0 ? form.works|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.works.vars.prototype)|e('html_attr') }}"
-                ></ul>
+                >
+                    {% for work in form.works %}
+                        <li>
+                            {{ form_row(work) }}
+                            <img src="{{asset(work.vars.value.fileLink)|imagine_filter('carre') }}" class="d-block" width="250" height="250">
+                        </li>
+                    {% endfor %}
+                </ul>
                 <button type="button" class="add_item_link btn btn-secondary" data-collection-holder-class="works">Ajouter une oeuvre</button>
                 <div class="save">
                     <button class="btn btn-primary" type="submit">Sauvegarder</button>
                 </div>
+                {{ form_row(form._token) }}
                 {{form_end(form,{render_rest: false})}}
             </div>
         </div>
@@ -40,8 +48,10 @@
             .forEach(btn => {
                 btn.addEventListener("click", addFormToCollection)
             });
+
+
         function addFormToCollection(e) {
-            const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+            const collectionHolder = document.querySelector('.works');
 
             const item = document.createElement('li');
 

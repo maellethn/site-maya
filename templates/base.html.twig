@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link href="{{ asset('asset/css/global.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/css/ernest/site/menu.css') }}" rel="stylesheet">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -27,7 +28,6 @@
         <div class="socials">
             <a class="insta" href="https://www.instagram.com/ernest_thinon/"><i class="fab fa-instagram"></i><span>Instagram</span></a>
             <a class="monochrome" href="http://journalmonochrome.fr/"><i class="fas fa-book-open"></i><span>Journal monochrome</span></a>
-            <a class="point" href="http://pointcontemporain.com/tag/maya-thinon/"><i class="fas fa-pen-fancy"></i><span>Point contemporain</span></a>
         </div>
         <div class="contact">
             <a class="mail" href="mailto:ernest.thinon@gmail.com"><i class="far fa-envelope"></i>ernest.thinon@gmail.com</a>
@@ -41,6 +41,7 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="{{ asset('asset/js/menu/menu.js') }}"></script>
 <!-- Core plugin JavaScript-->
 {% block javascripts %}{% endblock %}
 </body>
