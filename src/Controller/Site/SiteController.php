@@ -2,14 +2,14 @@
 
 namespace App\Controller\Site;
 
+use App\Controller\Shared\FrontController;
 use App\Entity\Categorie;
 use App\Repository\AcceuilRepository;
 use App\Repository\CategorieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
-class SiteController extends AbstractController
+class SiteController extends FrontController
 {
 
     #[Route('/', name: 'site')]

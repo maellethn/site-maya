@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('asset/css/ernest/site/exposition.css')}}" rel="stylesheet" type="text/css">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
+{% endblock %}
+
+{% block title %}
+    Ernest Thinon Exposition {{ exposition.title }}
+{% endblock %}
+
+{% block header %}
+    {% include 'partials/site-menu.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="exposition">
+        <div class="main-swiper">
+            <div class="swiper-wrapper">
+                {% for work in exposition.works %}
+                    <img class="swiper-slide" src="{{ asset(work.fileLink) }}" alt="{{ work.resume }}">
+                {% endfor %}
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="informations-swiper">
+            <div class="swiper-wrapper">
+                {% for work in exposition.works %}
+                    <div class="swiper-slide">
+                        <div class="exposition__information">
+                            <div class="exposition__size">
+                                {{ work.width }}  {{ work.height }} {{ work.support }}
+                            </div>
+                            <div class="exposition__resume">
+                                {{ work.resume }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const swiper = new Swiper('.main-swiper', {
+                direction: 'horizontal',
+                centeredSlides: true,
+                spaceBetween: 30,
+                grabCursor: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: "progressbar",
+                },
+
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            const informationSwiper = new Swiper('.informations-swiper', {
+                direction: 'horizontal',
+                centeredSlides: true,
+            });
+
+            swiper.controller.control = informationSwiper;
+            informationSwiper.controller.control = swiper;
+        } );
+
+    </script>
+{% endblock %}
