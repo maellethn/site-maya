@@ -2,14 +2,14 @@
 
 namespace App\Controller\Site;
 
+use App\Controller\Shared\FrontController;
 use App\Entity\Exposition;
 use App\Repository\CategorieRepository;
 use App\Repository\ExpositionRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class ExpositionController extends AbstractController
+class ExpositionController extends FrontController
 {
     #[Route('/expositions', name: 'exposition_list')]
     public function expositions(ExpositionRepository $expositionRepository, CategorieRepository $categorieRepository): Response

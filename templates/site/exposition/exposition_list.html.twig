@@ -21,7 +21,6 @@
             {% for exposition in expositions %}
                 <a class="expositions__grid__card" href="{{ path('exposition_single' , {id: exposition.id}) }}">
                     <div class="expositions__grid__card__header" style="background-image: url('{{ asset(exposition.works[0].fileLink) }}')">
-
                     </div>
                     <div class="expositions__grid__card__body">
                         {{ exposition.title }}

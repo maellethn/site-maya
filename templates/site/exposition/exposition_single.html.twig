@@ -21,7 +21,20 @@
         <div class="main-swiper">
             <div class="swiper-wrapper">
                 {% for work in exposition.works %}
-                    <img class="swiper-slide" src="{{ asset(work.fileLink) }}" alt="{{ work.resume }}">
+                    <div class="swiper-slide">
+                        <img src="{{ asset(work.fileLink) }}" alt="{{ work.resume }}">
+                        <div class="exposition__size">
+                            {% if work.width %}
+                                <span>Largeur: {{ work.width }}</span>
+                            {% endif %}
+                            {% if work.height %}
+                                <span>Hauteur: {{ work.height }}</span>
+                            {% endif %}
+                            {% if work.support %}
+                                <span>Support: {{ work.support }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
             <div class="swiper-button-prev"></div>
@@ -33,9 +46,6 @@
                 {% for work in exposition.works %}
                     <div class="swiper-slide">
                         <div class="exposition__information">
-                            <div class="exposition__size">
-                                {{ work.width }}  {{ work.height }} {{ work.support }}
-                            </div>
                             <div class="exposition__resume">
                                 {{ work.resume }}
                             </div>

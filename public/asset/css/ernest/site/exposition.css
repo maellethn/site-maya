@@ -1,10 +1,12 @@
 .exposition {
     background-color: #161925;
     padding: 10rem 3rem 5rem;
+
+    color: white;
 }
 .main-swiper {
     width: 100%;
-    height: 60vh;
+    height: 80vh;
 }
 .swiper-slide {
     text-align: center;
@@ -13,12 +15,9 @@
     justify-content: center;
     align-items: center;
 }
-img.swiper-slide {
+.swiper-slide img {
     display: block;
     width: 100%;
     height: 80%;
     object-fit: contain;
-}
-.informations-swiper {
-    color: white;
 }
