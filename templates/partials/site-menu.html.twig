@@ -17,8 +17,11 @@
                 </ul>
             {% endif %}
         </li>
-        <li>
-            <a href="{{ path('exposition_list') }}"><span>Expositions</span></a>
-        </li>
+        {% if expositions is defined and expositions|length > 0 %}
+            <li>
+                <a href="{{ path('exposition_list') }}"><span>Expositions</span></a>
+            </li>
+        {% endif %}
+
     </ul>
 </nav>
