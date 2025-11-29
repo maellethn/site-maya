@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{asset('asset/css/ernest/site/expositions.css')}}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}
+    Ernest Thinon Expositions
+{% endblock %}
+
+{% block header %}
+    {% include 'partials/site-menu.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="expositions">
+        <div class="expositions__header">
+            <h1 class="expositions__header__title">{{ 'Expositions'|upper }}</h1>
+        </div>
+        <div class="expositions__grid">
+            {% for exposition in expositions %}
+                <a class="expositions__grid__card" href="{{ path('exposition_single' , {id: exposition.id}) }}">
+                    <div class="expositions__grid__card__header" style="background-image: url('{{ asset(exposition.works[0].fileLink) }}')">
+                    </div>
+                    <div class="expositions__grid__card__body">
+                        {{ exposition.title }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

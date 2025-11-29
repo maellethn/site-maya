@@ -14,7 +14,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .p-4 {
@@ -33,35 +33,9 @@ ul {
     list-style: none;
 }
 
-/* Menu */
-.main-menu {
-    backdrop-filter: blur(40px);
-    font-size: 1.5rem;
-}
 
-.main-menu ul {
-    display: flex;
-    justify-content: space-around;
-}
-
-.main-menu li {
-    padding: 0.5rem 3rem;
-}
-
-.main-menu .parent-link:hover .sub-menu,
-.main-menu .parent-link:active .sub-menu {
-    max-height: 1000px;
-}
-.main-menu .sub-menu {
-    transition:max-height 0.5s ease-in-out;
-    flex-direction: column;
-    max-height: 0;
-    overflow: hidden;
-    font-size: 1.2rem;
-}
 
 footer {
-    margin-top: 1.5rem;
     padding: 2rem;
     background-color: #067BC2;
     color: white;
