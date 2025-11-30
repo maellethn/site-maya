@@ -27,3 +27,7 @@ lancement des commandes php dans le container php
 ```bash
 .bin/php
 ```
+Créer un dump 
+```bash
+.bin/mysqldump -u root -p ernestidb --set-gtid-purged=OF | gzip > db/data-dump.sql.gz
+```
