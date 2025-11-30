@@ -1,0 +1,35 @@
+/* Menu */
+.main-menu {
+    backdrop-filter: blur(40px);
+    font-size: 1.5rem;
+}
+
+.main-menu ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-menu li {
+    padding: 0.5rem 3rem;
+}
+
+.main-menu .parent-link:hover .sub-menu,
+.main-menu .parent-link:active .sub-menu,
+.main-menu .parent-link .sub-menu.expanded
+{
+    max-height: 100%;
+}
+
+.main-menu .sub-menu {
+    transition:max-height 0.5s ease-in-out;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .main-menu ul {
+        flex-direction: column;
+    }
+}
