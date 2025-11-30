@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker exec -i db_site-ernest mysqldump "$@"
+

@@ -94,3 +94,7 @@ a:active {
     text-decoration: none;
     color: #067BC2;
 }
+
+ol, ul {
+    padding: 0;
+}
