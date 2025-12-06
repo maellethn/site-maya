@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}{% include 'admin/adminStylesheet.html.twig' %}{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    {% include 'admin/adminNav.html.twig' %}
+    <div class="container-lg">
+        <div class="card shadow mb-4 form-xs">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">{{ title }}</h6>
+            </div>
+            <div class="card-body">
+                {{ form(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {% include 'admin/adminJavascript.html.twig' %}
+{% endblock %}
+
