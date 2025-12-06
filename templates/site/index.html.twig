@@ -19,15 +19,19 @@
     </div>
     <div class="container-lg">
         <section class="main_links">
-            <a href="{{ path('collection',{ id: (acceuil.mainCollection ? acceuil.mainCollection.id : randomCollection.id)}) }}"><i
-                        class="fa-solid fa-palette"></i><span>Exposition</span></a>
+            {% if expositions|length > 0 %}
+                <a href="{{ path('exposition_list') }}"><i
+                            class="fa-solid fa-palette"></i><span>Expositions</span></a>
+            {% endif %}
             <a href="{{ path('puzzle') }}"><i class="fa-solid fa-puzzle-piece"></i><span>Puzzle</span></a>
-            <a href="/"><i class="fa-solid fa-hands-clapping"></i><span>A propos de moi</span></a>
+            <a href="{{ path('collection',{ id: (acceuil.mainCollection ? acceuil.mainCollection.id : randomCollection.id)}) }}"><i
+                        class="fa-solid fa-hands-clapping"></i><span>Collection à la une</span></a>
         </section>
         <!-- Lettre -->
         {% if acceuil.image is not null %}
             <div class="img_presentation">
-                <img src="{{ acceuil.image| imagine_filter('carre') }}" width="250" height="250" alt="lettre point contemporain">
+                <img src="{{ acceuil.image| imagine_filter('carre') }}" width="250" height="250"
+                     alt="">
             </div>
         {% endif %}
         {% if acceuil.texte is not null %}
@@ -35,9 +39,6 @@
         {% endif %}
         <div class="clear"></div>
         <section class="actualities">
-
         </section>
     </div>
-
-
 {% endblock %}

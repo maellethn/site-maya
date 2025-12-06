@@ -70,4 +70,12 @@ class ExpositionController extends AbstractController
             'title' => 'Modifier l\'exposition '.$exposition->getTitle()
         ]);
     }
+
+    #[Route('/exposition/suppression/{id}', name: 'admin_exposition_suppression')]
+    public function SuppressionCategories(Exposition $exposition, EntityManagerInterface $manager)
+    {
+        $manager->remove($exposition);
+        $manager->flush();
+        return $this->redirectToRoute('admin_exposition_lists');
+    }
 }
