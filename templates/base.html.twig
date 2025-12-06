@@ -25,10 +25,16 @@
 </div>
 <footer>
     <div class="container-lg">
-        <div class="socials">
-            <a class="insta" href="https://www.instagram.com/ernest_thinon/"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-            <a class="monochrome" href="http://journalmonochrome.fr/"><i class="fas fa-book-open"></i><span>Journal monochrome</span></a>
-        </div>
+        {% if lienFooter is defined and lienFooter|length > 0 %}
+            <div class="socials">
+                {% for lien in lienFooter %}
+                    <a href="{{ lien.lien }}">
+                        {{ lien.icone|raw}}
+                        <span>{{ lien.label }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="contact">
             <a class="mail" href="mailto:ernest.thinon@gmail.com"><i class="far fa-envelope"></i>ernest.thinon@gmail.com</a>
         </div>
