@@ -29,9 +29,7 @@ class SiteController extends FrontController
         $acceuil = $acceuilRepo->find(1);
         return $this->render('site/index.html.twig', [
             'acceuil' => $acceuil,
-            'categories' => $categories,
             'randomCollection'=>$collection,
-
         ]);
     }
 
@@ -52,7 +50,6 @@ class SiteController extends FrontController
                 unset($categories[$i]);
         }
         return $this->render('site/collection.html.twig', [
-             'categories' => $categories,
              'collection' => $categorie,
              'slider'=>$slider
         ]);
@@ -61,9 +58,7 @@ class SiteController extends FrontController
     #[Route('/puzzle', name: 'puzzle')]
     public function PuzzleAction(CategorieRepository $catRepo, AcceuilRepository $acceuilRepo): Response
     {
-        $categories=$catRepo->findBy([], ['id'=> 'DESC']);
         return $this->render('site/puzzle.html.twig', [
-            'categories' => $categories,
             'collection' => $acceuilRepo->find(1)->getPuzzleCollection(),
         ]);
     }
