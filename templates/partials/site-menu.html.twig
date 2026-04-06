@@ -1,6 +1,6 @@
-{% set currentPath = path(app.request.attributes.get('_route'),
-    app.request.attributes.get('_route_params')) %}
-<nav class="main-menu" role="navigation">
+{% set currentPath = app.request.attributes.get('_route') %}
+
+<nav class="main-menu {{ currentPath == 'site' ? 'transparency' : '' }}" role="navigation">
     <ul>
         <li>
             <a href="{{ path('site') }}">Acceuil</a>
@@ -22,6 +22,5 @@
                 <a href="{{ path('exposition_list') }}"><span>Expositions</span></a>
             </li>
         {% endif %}
-
     </ul>
 </nav>
