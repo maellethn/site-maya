@@ -14,6 +14,7 @@
                 {{ form_start(form)}}
                 {{ form_row(form.title)}}
                 {{ form_row(form.subTitle)}}
+                {{ form_row(form.force_update_creation_date)}}
                 <ul class="works"
                     data-index="{{ form.works|length > 0 ? form.works|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.works.vars.prototype)|e('html_attr') }}"
