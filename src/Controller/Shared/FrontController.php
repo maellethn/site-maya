@@ -13,7 +13,6 @@ abstract class FrontController extends AbstractController
 
     private CategorieRepository $categorieRepository;
     private ExpositionRepository $expositionRepository;
-
     private LienFooterRepository $lienFooterRepository;
 
     /**
@@ -42,10 +41,10 @@ abstract class FrontController extends AbstractController
         return parent::render($view, $parameters, $response);
     }
     private function getCategories(): array{
-        return $this->categorieRepository->findBy([], ['id' => 'DESC']);
+        return $this->categorieRepository->findBy([], ['createdAt' => 'DESC','id' => 'DESC']);
     }
     private function getExpositions(): array{
-        return $this->expositionRepository->findBy([], ['id' => 'DESC']);
+        return $this->expositionRepository->findBy([], ['created_at'=>'DESC','id' => 'DESC']);
     }
     private function getLienFooter(): array{
         return $this->lienFooterRepository->findBy([], ['ordre' => 'ASC']);

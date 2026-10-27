@@ -49,15 +49,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/categories', name: 'categories')]
-    public function Categories(CategorieRepository $catRepo)
-    {
-        $categories=$catRepo->findAll();
-        return $this->render('admin/categories.html.twig', [
-            'categories' => $categories,
-        ]);
-    }
-
     #[Route('/couleurs', name: 'couleurs')]
     public function Couleurs(CouleurRepository $couleurRepo)
     {
@@ -136,33 +127,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/categories/ajout', name: 'ajoutCategorie')]
-    public function AjoutCategorie(Request $req, EntityManagerInterface $manager)
-    {
-        $categorie= new Categorie;
-        $form= $this->createForm(CategorieType::class,$categorie);
-    	$form->handleRequest($req);
-
-    	if ($form->isSubmitted() && $form->isValid()) {
-
-    		$manager->persist($categorie);
-    		$manager->flush();
-    		return $this->redirectToRoute('categories');
-    	}
-
-        return $this->render('admin/ajoutCategorie.html.twig', [
-        	'form' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/categories/suppression/{id}', name: 'categories_suppression')]
-    public function SuppressionCategories(Categorie $categorie, EntityManagerInterface $manager)
-    {
-        $manager->remove($categorie);
-        $manager->flush();
-        return $this->redirectToRoute('categories');
-    }
-
     #[Route('/oeuvres/suppression/{id}', name: 'oeuvres_suppression')]
     public function SuppressionOeuvres(Oeuvre $oeuvre, EntityManagerInterface $manager)
     {
@@ -185,25 +149,6 @@ class AdminController extends AbstractController
         $manager->remove($couleur);
         $manager->flush();
         return $this->redirectToRoute('couleurs');
-    }
-
-    #[Route('/categories/modification/{id}', name: 'modificationCategorie')]
-    public function ModificationCategorie(Request $req, EntityManagerInterface $manager, Categorie $categorie)
-    {
-        $form= $this->createForm(CategorieType::class,$categorie);
-        $form->handleRequest($req);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $manager->persist($categorie);
-            $manager->flush();
-            return $this->redirectToRoute('categories');
-        }
-
-        return $this->render('admin/ajoutCategorie.html.twig', [
-            'categorie' => $categorie,
-            'form' => $form->createView(),
-        ]);
     }
 
     #[Route('/oeuvres/modification/{id}', name: 'modificationOeuvre')]

@@ -12,21 +12,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class ExpositionController extends FrontController
 {
     #[Route('/expositions', name: 'exposition_list')]
-    public function expositions(ExpositionRepository $expositionRepository, CategorieRepository $categorieRepository): Response
+    public function expositions(): Response
     {
-        $categories = $categorieRepository->findBy([], ['id' => 'DESC']);
-        return $this->render('site/exposition/exposition_list.html.twig', [
-            'categories' => $categories,
-            'expositions' => $expositionRepository->findBy([], ['id' => 'DESC'])
-        ]);
+        return $this->render('site/exposition/exposition_list.html.twig');
     }
 
     #[Route('/exposition/{id}', name: 'exposition_single')]
     public function exposition_single(Exposition $exposition, CategorieRepository $categorieRepository): Response
     {
-        $categories = $categorieRepository->findBy([], ['id' => 'DESC']);
         return $this->render('site/exposition/exposition_single.html.twig', [
-            'categories' => $categories,
             'exposition' => $exposition
         ]);
     }
