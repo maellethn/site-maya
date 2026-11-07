@@ -12,10 +12,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin')]
+#[Route('/admin/expositions')]
 class ExpositionController extends AbstractController
 {
-    #[Route('/expositions', name: 'admin_exposition_lists')]
+    #[Route('/', name: 'admin_exposition_lists')]
     public function ExpositionsList(ExpositionRepository $expositionRepository)
     {
         $expositions=$expositionRepository->findAll();
@@ -24,7 +24,7 @@ class ExpositionController extends AbstractController
         ]);
     }
 
-    #[Route('/exposition/add', name: 'admin_exposition_add')]
+    #[Route('/add', name: 'admin_exposition_add')]
     public function ExpositionsAdd(Request $request, EntityManagerInterface $entityManager, FileUploader $uploader)
     {
         $exposition = new Exposition();
@@ -48,7 +48,7 @@ class ExpositionController extends AbstractController
         ]);
     }
 
-    #[Route('/exposition/edit/{id}', name: 'admin_exposition_edit')]
+    #[Route('/edit/{id}', name: 'admin_exposition_edit')]
     public function ExpositionsEdit(Exposition $exposition, Request $request, EntityManagerInterface $entityManager, FileUploader $uploader)
     {
         $form= $this->createForm(ExpositionType::class,$exposition);
@@ -59,6 +59,10 @@ class ExpositionController extends AbstractController
             foreach ($form->get('works')->getData() as $work){
                 if ($work->getFile())
                     $work->setFileLink($uploader->upload($work->getFile()));
+            }
+            $exposition->setUpdatedAt(new \DateTimeImmutable());
+            if ($form->get('force_update_creation_date')->getData()){
+                $exposition->setCreatedAt(new \DateTimeImmutable());
             }
             $entityManager->persist($exposition);
             $entityManager->flush();
@@ -71,7 +75,7 @@ class ExpositionController extends AbstractController
         ]);
     }
 
-    #[Route('/exposition/suppression/{id}', name: 'admin_exposition_suppression')]
+    #[Route('/suppression/{id}', name: 'admin_exposition_suppression')]
     public function SuppressionCategories(Exposition $exposition, EntityManagerInterface $manager)
     {
         $manager->remove($exposition);

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Exposition;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +34,15 @@ class ExpositionType extends AbstractType
                 'allow_delete' => true,
                 'delete_empty' => true,
                 'by_reference' => false
-            ]);
+            ])
+            ->add('force_update_creation_date', CheckboxType::class, [
+                'row_attr' =>['class'=>'form-check'],
+                'attr'=> ['class' => 'form-check-input'],
+                'label_attr' => ['class' => 'form-check-label'],
+                'mapped' => false,
+                'required' =>false
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

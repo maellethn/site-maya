@@ -35,3 +35,12 @@ Créer un dump
 ```bash
 .bin/mysqldump -u root -p ernestidb --set-gtid-purged=OF | gzip > db/data-dump.sql.gz
 ```
+
+## Migrations management.
+Reset migration schema on 7/11
+
+Add new migration : 
+Création de la migration
+```  .bin/php bin/console make:migration ```
+Application de la migration
+```  .bin/php bin/console d:m:m ```
