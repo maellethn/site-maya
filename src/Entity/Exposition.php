@@ -25,7 +25,7 @@ class Exposition
     /**
      * @var Collection<int, ExpositionWork>
      */
-    #[ORM\OneToMany(mappedBy: 'exposition', targetEntity: ExpositionWork::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'exposition', targetEntity: ExpositionWork::class, cascade: ['persist', 'remove'])]
     private Collection $works;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, options: ['default' => 'CURRENT_TIMESTAMP'])]
