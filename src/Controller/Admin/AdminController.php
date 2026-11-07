@@ -116,7 +116,8 @@ class AdminController extends AbstractController
                 //WebPConvert::convert($source, $destination, $options);
                 $oeuvre->setLien($source);
             }
-
+            $oeuvre->setCreatedAt(new \DateTimeImmutable());
+            $oeuvre->setUpdatedAt(new \DateTimeImmutable());
     		$manager->persist($oeuvre);
     		$manager->flush();
     		return $this->redirectToRoute('oeuvres');

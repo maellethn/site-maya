@@ -31,6 +31,8 @@ class CollectionController extends AbstractController
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $categorie->setCreatedAt(new \DateTimeImmutable());
+            $categorie->setUpdatedAt(new \DateTimeImmutable());
             $manager->persist($categorie);
             $manager->flush();
             return $this->redirectToRoute('categories');
