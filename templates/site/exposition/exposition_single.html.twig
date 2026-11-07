@@ -2,6 +2,7 @@
 
 {% block stylesheets %}
     <link href="{{asset('asset/css/ernest/site/exposition.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('asset/css/ernest/site/expositions.css')}}" rel="stylesheet" type="text/css">
     <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
@@ -54,7 +55,22 @@
                 {% endfor %}
             </div>
         </div>
+    </div>
+    <div class="exposition-gradient">
 
+    </div>
+    <div class="exposition-suggestions">
+        <div class="expositions__grid">
+            {% for exposition in expositions|slice(0, 3) %}
+                <a class="expositions__grid__card" href="{{ path('exposition_single' , {id: exposition.id}) }}">
+                    <div class="expositions__grid__card__header" style="background-image: url('{{ asset(exposition.works[0].fileLink ?? '') }}')">
+                    </div>
+                    <div class="expositions__grid__card__body">
+                        {{ exposition.title }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 {% block javascripts %}
