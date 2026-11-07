@@ -32,11 +32,14 @@ class ExpositionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             /** @var ExpositionWork $work */
             foreach ($form->get('works')->getData() as $work){
                 if ($work->getFile())
                     $work->setFileLink($uploader->upload($work->getFile()));
             }
+            $exposition->setCreatedAt(new \DateTimeImmutable());
+            $exposition->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($exposition);
             $entityManager->flush();
             return $this->redirectToRoute('admin_exposition_lists');
