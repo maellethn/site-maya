@@ -28,6 +28,7 @@ services:
   php:
     build: php
     container_name: www_site-ernest
+    user: "${UID}:${GID}"
     ports:
       - $IP:80:80
     volumes:
